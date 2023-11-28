@@ -1,0 +1,858 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    
+    <div class="map1">
+        <img src="./image/map1.png" alt="map">
+    </div>
+    <div class="map2">
+        <img src="./image/purple.png" alt="map">
+    </div>
+
+    <div class="map3">
+        <img src="./image/yellow.png" alt="map">
+    </div>
+
+     <div class="map4">
+        <img src="./image/pink.png" alt="map">
+    </div>
+
+    <div class="map5">
+        <img src="./image/green.png" alt="map">
+    </div>
+
+    <div class="map6">
+        <img src="./image/blue.png" alt="map">
+    </div>
+
+    <div class="map7">
+        <img src="./image/black.png" alt="map">
+    </div>
+    
+    <img class="top-image" src="./image/title.gif" alt="Top Image">
+
+     
+      <div class="explain">
+        <p> ▷ 사투리에 마우스를 올려놔 보세요!<br>
+            ▷  사투리를 클릭해보세요!<br>
+            ▷  지역 버튼을 클릭해보세요!</p>
+      </div>
+     
+
+<div class="image-container">
+    <img id="image1" src="./image/gw1.png" alt="Image 1">
+    <img id="image2" src="./image/gw2.png" alt="Image 2">
+    <img id="image3" src="./image/jj1.png" alt="Image 3">
+    <img id="image4" src="./image/jj2.png" alt="Image 4">
+    <img id="image5" src="./image/jj3.png" alt="Image 5">
+    <img id="image6" src="./image/cc1.png" alt="Image 6">
+    <img id="image7" src="./image/cc2.png" alt="Image 7">
+    <img id="image8" src="./image/cc3.png" alt="Image 8">
+    <img id="image9" src="./image/gs1.png" alt="Image 9">
+    <img id="image10" src="./image/gs2.png" alt="Image 10">
+    <img id="image11" src="./image/gs3.png" alt="Image 11">
+    <img id="image12" src="./image/jl1.png" alt="Image 12">
+    <img id="image13" src="./image/jl2.png" alt="Image 13">
+    <img id="image14" src="./image/jl3.png" alt="Image 14">
+    <img id="image15" src="./image/gg1.png" alt="Image 15">
+    <img id="image16" src="./image/gg2.png" alt="Image 16">
+</div>
+
+
+
+  <div class="button-container">
+    <button id="button1" class="custom-button">경상도</button>
+    <button id="button2" class="custom-button">강원도</button>
+    <button id="button3" class="custom-button">강원도</button>
+    <button id="button4" class="custom-button">경상도</button>
+    <button id="button5" class="custom-button">전라도</button>
+    <button id="button6" class="custom-button">전라도</button>
+    <button id="button7" class="custom-button">충청도</button>
+    <button id="button8" class="custom-button">경기도</button>
+    <button id="button9" class="custom-button">충청도</button>
+    <button id="button10" class="custom-button">제주도</button>
+    <button id="button11" class="custom-button">전라도</button>
+    <button id="button12" class="custom-button">충청도</button>
+    <button id="button13" class="custom-button">제주도</button>
+    <button id="button14" class="custom-button">경상도</button>
+    <button id="button15" class="custom-button">경기도</button>
+    <button id="button16" class="custom-button">제주도</button>
+</div>
+
+    
+      <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <img class="popup-image" id="popupImage" src="" alt="Popup Image">
+        </div>
+    </div>
+      
+</body>
+</html>
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+
+}
+
+.map1{
+    position: fixed;
+    top: 0;
+    left: 3%;
+    width: 89%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.map2,.map3,.map4,.map5,.map6,.map7 {
+    position: fixed;
+    top: 0;
+    left: 3%;
+    width: 89%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.map1 img,.map2 img,.map3 img,.map4 img,.map5 img,.map6 img,.map7 img  {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.top-image {
+    position: absolute;
+    top: 2.5%;
+    left: 1.5%;
+    width: 18%;
+    height: auto;
+}
+
+
+
+.explain{
+    position: fixed;
+    bottom: 4%; 
+    right: 3%;
+    font-size: 15px;
+    line-height: 1.65;
+    color: black; 
+
+}
+
+
+.image-container {
+    display: flex;
+    justify-content: space-between; 
+    position: relative;
+    z-index: 5;
+}
+
+.image-container img:nth-of-type(1) {
+    max-width: 12%; 
+    position: absolute;
+    top: 25vh;
+    left: 62vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(2) {
+    max-width: 10%; 
+    position: absolute;
+    top: 11.5vh;
+    left: 59vw;
+    transform: translate(-50%, -50%);
+}
+.image-container img:nth-of-type(3) {
+    max-width: 17%; 
+    position: absolute;
+    top: 79.3vh;
+    left: 52.5vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(4) {
+    max-width: 18%; 
+    position: absolute;
+    top: 91vh;
+    left: 57vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(5) {
+    max-width: 17%; 
+    position: absolute;
+    top: 84vh;
+    left: 36vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(6) {
+    max-width: 20%; 
+    position: absolute;
+    top: 41vh;
+    left: 35vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(7) {
+    max-width: 7%; 
+    position: absolute;
+    top: 34vh;
+    left: 38vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(8) {
+    max-width: 12%; 
+    position: absolute;
+    top: 38vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(9) {
+    max-width: 22%; 
+    position: absolute;
+    top: 43vh;
+    left: 67.3vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(10) {
+    max-width: 22%; 
+    position: absolute;
+    top: 65vh;
+    left: 62vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(11) {
+    max-width: 19%; 
+    position: absolute;
+    top: 32.5vh;
+    left: 64.8vw;
+    transform: translate(-50%, -50%);
+}
+.image-container img:nth-of-type(12) {
+    max-width: 28%; 
+    position: absolute;
+    top: 52.4vh;
+    left: 45vw;
+    transform: translate(-50%, -50%);
+}
+
+.image-container img:nth-of-type(13) {
+    max-width: 14%; 
+    position: absolute;
+    top: 62.5vh;
+    left: 45vw;
+    transform: translate(-50%, -50%);
+}
+.image-container img:nth-of-type(14) {
+    max-width: 18%; 
+    position: absolute;
+    top: 70vh;
+    left: 40vw;
+    transform: translate(-50%, -50%);
+}
+.image-container img:nth-of-type(15) {
+    max-width: 10%; 
+    position: absolute;
+    top: 15vh;
+    left: 47vw;
+    transform: translate(-50%, -50%);
+}
+.image-container img:nth-of-type(16) {
+    max-width: 14%; 
+    position: absolute;
+    top: 24vh;
+    left: 44vw;
+    transform: translate(-50%, -50%);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 7;
+}
+
+  .popup-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    max-width: 700px;
+    height: auto;
+    max-height: 80%;
+    overflow: auto;
+}
+
+.popup-image {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 1.4vh;
+    right: 1.2vw;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.text {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    display: flex;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.right {
+    width: 9cm;
+    padding: 10px;
+    margin-right: 0px;
+
+}
+
+.left{
+    width: 2cm;
+    padding: 10px;
+    margin-right: 0px;
+    position: relative;
+}
+
+.left::after {
+    content: '';
+    position: absolute;
+    top: 10PX;
+    right: 10px;
+    height: 90%;
+    width: 1.2px;
+    background-color: black; 
+}
+
+.custom-button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    font-size: 13px;
+    border-radius: 6px;
+    z-index: 6;
+}
+
+
+#button1 {
+    position: absolute;
+    top: 62%;
+    left: 51.2%;
+}
+
+#button1:hover {
+    background-color:  #9718ff;
+    color: white;
+}
+
+  
+#button2 {
+    position: absolute;
+    top: 3.5%;
+    left: 53.5%; 
+}
+#button2:hover {
+    background-color: ff00b2;
+    color: white;
+}
+
+ 
+#button3 {
+    position: absolute;
+    top: 19%; 
+    left: 55%;
+}
+#button3:hover {
+    background-color: ff00b2;
+    color: white; 
+}
+
+
+#button4 {
+    position: absolute;
+    top: 41.6%; 
+    left: 57%;
+}
+#button4:hover {
+    background-color:  rgb(151, 24, 255);
+    color: white;
+}
+  
+#button5 {
+    position: absolute;
+    top: 47.4%;
+    left: 32.3%; 
+}
+#button5:hover {
+    background-color: 2cd0ff;
+}
+ 
+#button6 {
+    position: absolute;
+    top: 64.5%; 
+    left: 31.7%;
+}
+#button6:hover {
+    background-color: 2cd0ff;
+}
+ 
+
+#button7 {
+    position: absolute;
+    top: 32.2%; 
+    left: 43.2%;
+}
+#button7:hover {
+    background-color: 23ff1d;
+}
+  
+#button8 {
+    position: absolute;
+    top: 9.8%;
+    left: 40.5%; 
+}
+#button8:hover {
+    background-color: black;
+    color: white;
+}
+ 
+#button9 {
+    position: absolute;
+    top: 28.5%; 
+    left: 32.2%;
+}
+#button9:hover {
+    background-color: 23ff1d;
+}
+
+#button10 {
+    position: absolute;
+    top: 77%; 
+    left: 29%;
+}
+#button10:hover {
+    background-color: ffe539;
+}
+
+#button11 {
+    position: absolute;
+    top: 56%; 
+    left: 39.5%;
+}
+#button11:hover {
+    background-color: 2cd0ff;
+}
+ 
+
+#button12 {
+    position: absolute;
+    top: 32.5%; 
+    left: 23.5%;
+}
+#button12:hover {
+    background-color: 23ff1d;
+}
+   
+#button13 {
+    position: absolute;
+    top: 86%; 
+    left: 48.5%;
+}
+#button13:hover {
+    background-color: ffe539;
+}
+ 
+
+   
+#button14 {
+    position: absolute;
+    top: 30%; 
+    left: 55%;
+}
+#button14:hover {
+    background-color:  rgb(151, 24, 255);
+    color: white;
+}
+
+#button15 {
+    position: absolute;
+    top: 18%; 
+    left: 36.3%;
+}
+#button15:hover {
+    background-color: black;
+    color: white;
+}
+   
+#button16 {
+    position: absolute;
+    top: 74.6%; 
+    left: 45%;
+}
+#button16:hover {
+    background-color: ffe539;
+}
+</style>
+
+<script>
+
+const image1 = document.getElementById('image1');
+const image2 = document.getElementById('image2');
+const image3 = document.getElementById('image3');
+const image4 = document.getElementById('image4');
+const image5 = document.getElementById('image5');
+const image6 = document.getElementById('image6');
+const image7 = document.getElementById('image7');
+const image8 = document.getElementById('image8');
+const image9 = document.getElementById('image9');
+const image10 = document.getElementById('image10');
+const image11 = document.getElementById('image11');
+const image12 = document.getElementById('image12');
+const image13 = document.getElementById('image13');
+const image14 = document.getElementById('image14');
+const image15 = document.getElementById('image15');
+const image16 = document.getElementById('image16');
+
+const popup = document.getElementById('popup');
+const popupImage = document.getElementById('popupImage');
+const closePopup = document.querySelector('.close');
+
+
+image1.addEventListener('click', function() {
+    openPopup('./image/1.png');
+});
+image2.addEventListener('click', function() {
+    openPopup('./image/2.png');
+});
+image3.addEventListener('click', function() {
+    openPopup('./image/3.png');
+});
+image4.addEventListener('click', function() {
+    openPopup('./image/4.png');
+});
+image5.addEventListener('click', function() {
+    openPopup('./image/5.png');
+});
+image6.addEventListener('click', function() {
+    openPopup('./image/6.png');
+});
+image7.addEventListener('click', function() {
+    openPopup('./image/7.png');
+});
+image8.addEventListener('click', function() {
+    openPopup('./image/8.png');
+});
+image9.addEventListener('click', function() {
+    openPopup('./image/9.png');
+});
+image10.addEventListener('click', function() {
+    openPopup('./image/10.png');
+});
+image11.addEventListener('click', function() {
+    openPopup('./image/11.png');
+});
+image12.addEventListener('click', function() {
+    openPopup('./image/12.png');
+});
+image13.addEventListener('click', function() {
+    openPopup('./image/13.png');
+});
+image14.addEventListener('click', function() {
+    openPopup('./image/14.png');
+});
+image15.addEventListener('click', function() {
+    openPopup('./image/15.png');
+});
+
+image16.addEventListener('click', function() {
+    openPopup('./image/16.png');
+});
+
+
+
+
+
+closePopup.addEventListener('click', function() {
+    popup.style.display = 'none';
+});
+
+function openPopup(imageSrc) {
+    popupImage.src = imageSrc;
+    popup.style.display = 'block';
+}
+
+
+
+
+
+
+image1.addEventListener('mouseover', function() {
+    image1.src = './image/gw1.gif';
+});
+image1.addEventListener('mouseout', function() {
+    image1.src = './image/gw1.png';
+});
+
+image2.addEventListener('mouseover', function() {
+    image2.src = './image/gw2.gif';
+});
+image2.addEventListener('mouseout', function() {
+    image2.src = './image/gw2.png';
+});
+
+image3.addEventListener('mouseover', function() {
+    image3.src = './image/jj1.gif';
+});
+image3.addEventListener('mouseout', function() {
+    image3.src = './image/jj1.png';
+});
+
+image4.addEventListener('mouseover', function() {
+    image4.src = './image/jj2.gif';
+});
+image4.addEventListener('mouseout', function() {
+    image4.src = './image/jj2.png';
+});
+
+image5.addEventListener('mouseover', function() {
+    image5.src = './image/jj3.gif';
+});
+image5.addEventListener('mouseout', function() {
+    image5.src = './image/jj3.png';
+});
+
+image6.addEventListener('mouseover', function() {
+    image6.src = './image/cc1.gif';
+});
+image6.addEventListener('mouseout', function() {
+    image6.src = './image/cc1.png';
+});
+
+image7.addEventListener('mouseover', function() {
+    image7.src = './image/cc2.gif';
+});
+image7.addEventListener('mouseout', function() {
+    image7.src = './image/cc2.png';
+});
+
+image8.addEventListener('mouseover', function() {
+    image8.src = './image/cc3.gif';
+});
+image8.addEventListener('mouseout', function() {
+    image8.src = './image/cc3.png';
+});
+
+image9.addEventListener('mouseover', function() {
+    image9.src = './image/gs1.gif';
+});
+image9.addEventListener('mouseout', function() {
+    image9.src = './image/gs1.png';
+});
+
+image10.addEventListener('mouseover', function() {
+    image10.src = './image/gs2.gif';
+});
+image10.addEventListener('mouseout', function() {
+    image10.src = './image/gs2.png';
+});
+
+image11.addEventListener('mouseover', function() {
+    image11.src = './image/gs3.gif';
+});
+image11.addEventListener('mouseout', function() {
+    image11.src = './image/gs3.png';
+});
+
+
+image12.addEventListener('mouseover', function() {
+    image12.src = './image/jl1.gif';
+});
+image12.addEventListener('mouseout', function() {
+    image12.src = './image/jl1.png';
+});
+
+image13.addEventListener('mouseover', function() {
+    image13.src = './image/jl2.gif';
+});
+image13.addEventListener('mouseout', function() {
+    image13.src = './image/jl2.png';
+});
+
+image14.addEventListener('mouseover', function() {
+    image14.src = './image/jl3.gif';
+});
+image14.addEventListener('mouseout', function() {
+    image14.src = './image/jl3.png';
+});
+
+image15.addEventListener('mouseover', function() {
+    image15.src = './image/gg1.gif';
+});
+image15.addEventListener('mouseout', function() {
+    image15.src = './image/gg1.png';
+});
+
+image16.addEventListener('mouseover', function() {
+    image16.src = './image/gg2.gif';
+});
+image16.addEventListener('mouseout', function() {
+    image16.src = './image/gg2.png';
+});
+
+document.querySelector('.map2').style.display = 'none';
+document.querySelector('.map3').style.display = 'none';
+document.querySelector('.map4').style.display = 'none';
+document.querySelector('.map5').style.display = 'none';
+document.querySelector('.map6').style.display = 'none';
+document.querySelector('.map7').style.display = 'none'; 
+
+
+document.querySelectorAll('.custom-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const map1 = document.querySelector('.map1');
+        const map2 = document.querySelector('.map2');
+        const map3 = document.querySelector('.map3');
+        const map4 = document.querySelector('.map4');
+        const map5 = document.querySelector('.map5');
+        const map6 = document.querySelector('.map6');
+        const map7 = document.querySelector('.map7');
+
+        
+        if (this.id === 'button1' || this.id === 'button4' || this.id === 'button14') {
+            if (map2.style.display === 'none') {
+                map2.style.display = 'block';
+                map3.style.display = 'none';
+                map4.style.display = 'none';
+                map5.style.display = 'none';
+                map6.style.display = 'none';
+                map7.style.display = 'none'
+            } else {
+                map2.style.display = 'none';
+            }
+        } else if (this.id === 'button13' || this.id === 'button10' || this.id === 'button16') {
+            if (map3.style.display === 'none') {
+                map3.style.display = 'block';
+                map2.style.display = 'none';
+                map1.style.display = 'block';
+                map4.style.display = 'none';
+                map5.style.display = 'none';
+                map6.style.display = 'none'; 
+                map7.style.display = 'none'
+            } else {
+                map3.style.display = 'none';
+            }
+        } else if (this.id === 'button2' || this.id === 'button3') {
+            if (map4.style.display === 'none') {
+                map4.style.display = 'block';
+                map1.style.display = 'block';
+                map2.style.display = 'none';
+                map3.style.display = 'none';
+                map5.style.display = 'none';
+                map6.style.display = 'none';
+                map7.style.display = 'none'
+            } else {
+                map4.style.display = 'none';
+            }
+
+        } else if (this.id === 'button9'|| this.id === 'button7' || this.id === 'button12' ) {
+            if (map5.style.display === 'none') {
+                map5.style.display = 'block';
+                map1.style.display = 'block';
+                map2.style.display = 'none';
+                map3.style.display = 'none';
+                map4.style.display = 'none';
+                map6.style.display = 'none'; 
+                map7.style.display = 'none'
+            } else {
+                map5.style.display = 'none';
+            }
+
+        } else if (this.id === 'button5'|| this.id === 'button6'|| this.id === 'button11') { 
+            if (map6.style.display === 'none') {
+                map6.style.display = 'block';
+                map1.style.display = 'block';
+                map2.style.display = 'none';
+                map3.style.display = 'none';
+                map4.style.display = 'none';
+                map5.style.display = 'none';
+                map7.style.display = 'none'
+            } else {
+                map6.style.display = 'none';
+            }
+
+        } else if (this.id === 'button8' || this.id === 'button15' ){
+            if (map7.style.display === 'none') {
+                map7.style.display = 'block';
+                map1.style.display = 'block';
+                map2.style.display = 'none';
+                map3.style.display = 'none';
+                map4.style.display = 'none'
+                map5.style.display = 'none';
+                map6.style.display = 'none';
+            } else {
+                map7.style.display = 'none';
+            }
+
+
+        } else {
+            map2.style.display = 'none';
+            map3.style.display = 'none';
+            map4.style.display = 'none';
+            map5.style.display = 'none';
+            map6.style.display = 'none';
+            map7.style.display = 'none';
+        }
+    });
+});
+
+</script>
