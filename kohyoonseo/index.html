@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>언어의 세포분열: 돌연변이 실험</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <!-- 한글 폰토 함맅 -->
+    <link rel="stylesheet" href="https://use.typekit.net/txt1jfm.css">    
+    <!-- 영문 폰트 -->
+    <style>
+    body {
+        background-color: white;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+        margin: 0; 
+        padding: 0;
+        user-select: none;
+    }
+
+    .chat-box {
+        font-family: "hahmlet", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 100px;
+
+        position: fixed;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 70%;
+        height: auto;
+        min-height: 20vh;
+        max-height: 100vh;
+        z-index: 1000; 
+
+        border: none;
+        box-sizing: border-box;
+        outline: none;
+
+        color: black; 
+        background-color: transparent;
+        caret-color: black;
+        text-align: center;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+
+        resize: none;
+        overflow: hidden;
+        user-select: none;
+    }
+
+    .chat-box::placeholder {
+        color: black; /* '문장을 입력하세요' 텍스트의 색상 */
+    }
+
+    .chat-box::selection {
+        background: black; /* 드래그 시 배경 색상을 검정색으로 변경 */
+        color: white; /* 드래그 시 글자 색상을 흰색으로 변경 */
+    }
+
+    .chat-content {
+        font-family: "hahmlet", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 32px;
+        line-height: 46px;
+
+        color: black;
+    
+        position: absolute;
+        left: 20%; /* 왼쪽에서 20% 여백 */
+        width: 60%; /* 화면 가운데 60%에 해당하는 너비를 차지 */
+        text-align: center; /* 텍스트를 가운데 정렬 */
+    }
+
+    .background {
+        width: 100%;
+    }
+    
+    .title {
+        display: flex;
+        justify-content: left;
+        width: 95%; /* 화면 너비의 95% 사용 */
+        position: absolute; /* 상단에 고정 */
+        top: 10px; /* 화면의 최상단으로 설정 */
+        left: 2.5%; /* 화면 중심을 기준으로 하기 위해 왼쪽에서 2.5% 여백 */
+        font-family: "hahmlet", sans-serif;
+        font-size: 36pt;
+        font-weight: 400;
+    }
+
+    .subtitle {
+        display: flex;
+        justify-content: left;
+        width: 95%; /* 화면 너비의 90% 사용 */
+        position: absolute; /* 상단에 고정하기 위해 */
+        top: 82px; /* 화면의 최상단으로 설정 */
+        left: 2.8%; /* 화면 중심을 기준으로 하기 위해 왼쪽에서 5%의 여백을 줌 */
+        font-family: "hahmlet", sans-serif;
+        font-size: 22pt;
+        line-height: 26pt;
+        font-weight: 300;
+    }
+    
+    .left-text {
+        font-family: "hahmlet", sans-serif;
+        font-size: 36pt;
+        font-weight: 400;
+
+        line-height: 36px;
+        text-align: left; /* 왼쪽 정렬 */
+        margin-left: 2.7%; /* 왼쪽 여백 설정 */
+        position: absolute; /* 상단에 고정하기 위해 */
+    }
+
+    .time-text {
+        font-family: "hahmlet", sans-serif;
+        font-size: 36pt;
+        font-weight: 300;
+        line-height: 46pt;
+        text-align: right; /* 오른쪽 정렬 */
+        position: absolute;
+        right: 2.5%; /* '실험' 글자와 오른쪽 끝라인이 맞게 조정 */
+    }
+
+    .right-text {
+        font-family: "hahmlet", sans-serif;
+        font-size: 36pt;
+        font-weight: 400;
+
+        line-height: 46pt;
+        text-align: right; /* 오른쪽 정렬 */
+        position: absolute;
+        right: 2.5%; /* '실험' 글자와 오른쪽 끝라인이 맞게 조정 */
+    }
+    
+    .after-text {
+        font-family: "hahmlet", sans-serif;
+        font-size: 36pt;
+        line-height: 36px;
+        text-align: right; /* 왼쪽 정렬 */
+        right: 2.5%; /* '실험' 글자와 오른쪽 끝라인이 맞게 조정 */
+        position: absolute; /* 상단에 고정하기 위해 */
+    }
+
+    .glyph-container {
+        display: flex;
+        justify-content: space-between;
+        width: 70%; /* 화면 너비의 70% 사용 */
+        position: absolute; 
+        top: 43%; /* 화면 중앙으로 설정 */
+        left: 50%; /* 화면 중앙으로 설정 */
+        transform: translate(-50%, -50%); /* 화면 중앙으로 설정 */
+    }
+    
+    .glyph {
+        font-family: "hahmlet", sans-serif;
+        font-size: 100pt;
+    }
+
+    .highlight {
+        border-left: 3px solid black; 
+        border-right: 3px solid black; 
+
+        vertical-align: center;  /* 셀의 바닥에 글자 위치 */
+        padding-bottom: 8px; /* 텍스트 위치를 1px 낮춤 */
+    }
+
+    .highlight:hover {
+        color: white;
+        background-color: black;
+        cursor: pointer;
+    }
+
+    .highlight2 {
+        border-top: 3px solid black;  
+        border-left: 3px solid black;  
+        vertical-align: center;  /* 셀의 바닥에 글자 위치 */
+        padding-bottom: 8px; /* 텍스트 위치를 1px 낮춤 */
+    }
+
+    .highlight2:hover {
+        color: white;
+        background-color: black;
+        cursor: pointer;
+    }
+
+    table {
+        border-collapse: collapse;  /* 테두리 간의 간격 없애기 */
+    }
+
+    .tr-border {
+        border-top: 3px solid black;  /* 상단에 검은색 2px 테두리 추가 */
+    }
+
+    canvas {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .gallery-btn1 {
+        all: unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+        background-color: transparent;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        z-index: 999;
+    }
+    
+
+    .gallery-btn1:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .gallery-btn2 {
+        font-family: "hahmlet", sans-serif;
+        font-size: 16px;
+
+        position: absolute;
+        right: 10px;
+        top: 95%;
+        color: grey;
+        background-color: transparent;
+        border: none;
+        text-decoration: underline 2px solid;
+        cursor: pointer;
+
+        z-index: 999;
+    }
+    
+    .gallery-btn2:hover {
+        color: black;
+    }
+
+    .gallery-button {
+        font-family: "hahmlet", sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+
+        width: 60px;
+        background-color: white;
+        color: black;
+        border: none;
+        transition: background-color 0.3s; 
+    }
+    
+    .gallery-button:disabled {
+        color: rgb(255, 255, 255); 
+    }
+    
+    .gallery-button:hover:not(:disabled) {
+        background-color: black; 
+        color: white;
+    }
+
+    .image-size {
+        width: 50%;
+        z-index: 9999;
+    }
+
+    .slideIn {
+        animation: slideIn 0.8s ease-in-out forwards;
+    }
+    
+    .slideOut {
+        animation: slideOut 0.8s ease-in-out forwards;
+    }
+    
+    #gallery-container {
+        position: fixed;
+        right: 0; /* 초기 상태에서 갤러리 창이 화면 오른쪽에 위치하도록 설정 */
+        transform: translateX(100%); /* 갤러리 창이 화면 오른쪽 밖으로 이동하도록 설정 */
+        transition: transform 0.5s; /* 오른쪽으로부터 슬라이드 되는 효과를 줌 */
+        display: none;
+    }
+
+    #gallery-container.active {
+        display: block;
+        transform: translateX(0); /* 활성화 상태에서는 갤러리 창이 화면 안으로 이동하도록 설정 */
+    }
+
+    #close-gallery {
+        margin-bottom: 20px;
+    }
+
+    #gallery-scroll {
+        position: absolute;
+        top: 100px; /* 버튼 아래로 내려오도록 top 값을 조절 */
+        bottom: 0;
+        width: 100%;
+        overflow: auto; /* 내용이 div를 넘어갈 때 스크롤바 표시 */
+    }
+
+    #overview-img {
+        display: none;
+        width: 50%;
+    }
+
+    #method-img {
+        display: none;
+        width: 50%;
+    }
+    
+    @keyframes boldness {
+        0%, 20%, 80%, 100% {
+            font-weight: 300;
+            filter: blur(0.1rem);
+        }
+        40%, 60% {
+            font-weight: 900;
+            filter: blur(0.5rem);
+        }
+    }
+
+    @keyframes slideIn {
+        0% {
+            transform: translateY(150%) rotate(-10deg);
+        }
+        100% {
+            transform: translateY(0) rotate(0);
+        }
+    }
+
+    @keyframes slideOut {
+        0% {
+            transform: translateY(0) rotate(0);
+        }
+        100% {
+            transform: translateY(150%) rotate(-10deg);
+        }
+    }
+    
+    </style>
+
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <button id="start" onclick="start(this)">Start</button>
+
+        <div class="chat-content"></div>
+        <textarea class="chat-box" id="input" spellcheck="false"></textarea>
+        <div class="background">
+            <div class="title">언어의 세포분열: 돌연변이 실험</div>
+            <div class="subtitle">Cell Division of Language: <br>
+                Mutation Experiment</div>
+
+            <!-- <div class="left-text" style="text-decoration: underline; top: 80px;">23.11.29.-12.4.</div> -->
+            <div class="time-text" style="top: 10px;" id="timeDisplay">
+            </div>
+            <script>
+                function updateTime() {
+                    var date = new Date(); 
+                    var year = date.getFullYear().toString().substr(-2); 
+                    var month = date.getMonth() + 1; 
+                    var day = date.getDate();
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var seconds = date.getSeconds();
+
+        
+                    if(month < 10) month = '0' + month;
+                    if(day < 10) day = '0' + day;
+                    if(hours < 10) hours = '0' + hours;
+                    if(minutes < 10) minutes = '0' + minutes;
+                    if(seconds < 10) seconds = '0' + seconds;
+        
+                    var dateString = year + '.' + month + '.' + day + '.' + hours + ':' + minutes + ':' + seconds;
+                    
+                    document.getElementById('timeDisplay').innerHTML = dateString;
+                }
+                setInterval(updateTime, 1000); // 1초마다 updateTime 함수를 실행합니다.
+            </script>
+
+            <div class="left-text" id="instruction1" style="top: 42%;">여기에</div>
+            <div class="right-text" id="instruction2" style="top: 42%;">엔터를<br>누르면<br>실험이<br>시작됩니다</div>
+
+            <div class="glyph-container">
+                <span class="glyph">[</span>
+                <span class="glyph">]</span>
+            </div>
+
+            <div class="left-text" id="instruction3" style="top: 90%;">
+                <table cellspacing="0">  
+                    <tr class="tr-border">
+                        <td class="highlight" style="height: 56px;" id="overview">실험 개요</td>
+                        <td style="padding-bottom: 8px;">와</td>
+                        <td class="highlight" id="method">실험 방법</td>
+                        <td style="padding-bottom: 8px;">을 참고하세요</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+                
+        <img id="overview-img" class="image-size" style="display:none;" src="asset/img1.svg">
+        <img id="method-img" class="image-size" style="display:none" src="asset/img2.svg">
+
+        <div class="after-text" id="instruction4" style="top: 90%;">
+            <table cellspacing="0">  
+                <tr class="tr-border">
+                    <td class="highlight2" style="height: 56px;" onclick="toggleGallery();">이전 실험 일지</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div id="gallery-container" style="position: fixed; right: 0; top: 0; width: 300px; height: 100%; background-color: yellow; transition: transform 0.5s ease;">
+            <button class="gallery-btn1" id="close-gallery" style="position: absolute; left: 20px; top: 12px;"> 
+                <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> X </span>
+            </button>
+            <button class="gallery-btn2" id="clear-gallery">전체 실험 일지 지우기</button>
+            <div id="gallery-scroll"> <!-- 스크롤되는 부분을 별도의 div로 묶음 -->
+                <div id="gallery-images" style="padding: 20px;"></div>
+            </div>
+        </div>
+        
+
+        <div class="background">
+            <div class="after-text" style="top: 90%; display: none;" id="after-text">  
+                <table cellspacing="0" id="share-table"> 
+                    <tr class="tr-border">
+                        <td class="highlight" style="height: 56px;" id="share-text">분열 결과 저장하기</td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="highlight" onclick="location.reload();">실험 다시하기</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+        <script>
+            const inputElement = document.querySelector('#input');
+            const startButton = document.querySelector('#start');
+            const afterTextElement = document.querySelector('#after-text');
+            startButton.style.display = 'none';
+            
+
+            let isInitialClick = true;
+            let isFirstEnter = true;
+            let isProcessing = false;
+
+            let placeholderTexts = ['문장을 입력하세요', 'Enter a sentence'];
+            let placeholderIndex = 0;
+            let isDeleting = false;
+            let placeholderDelay = 0; // 시작 지연 시간 (ms)
+            let typingSpeed = 200; // 타이핑 속도 (ms)
+            let deletingSpeed = 100; // 삭제 속도 (ms)
+            let placeholderTextIndex = 0; // 번갈아가며 영어와 한글 문장 나타나게
+
+            // 실험 개요, 방법
+            document.getElementById('overview').addEventListener('click', function() {
+                var img = document.getElementById('overview-img');
+                if (img.classList.contains('slideOut') || img.style.display === "none") {
+                    img.style.display = "block";
+                    img.classList.remove('slideOut');
+                    img.classList.add('slideIn');
+                } else {
+                    img.classList.remove('slideIn');
+                    img.classList.add('slideOut');
+                    setTimeout(function(){ img.style.display = "none"; }, 1000);
+                }
+            });        
+            
+            document.getElementById('method').addEventListener('click', function() {
+                var img = document.getElementById('method-img');
+                if (img.classList.contains('slideOut') || img.style.display === "none") {
+                    img.style.display = "block";
+                    img.classList.remove('slideOut');
+                    img.classList.add('slideIn');
+                } else {
+                    img.classList.remove('slideIn');
+                    img.classList.add('slideOut');
+                    setTimeout(function(){ img.style.display = "none"; }, 1000);
+                }
+            });      
+
+            // 이미지 저장
+            function saveImage() {
+                var canvas = document.querySelector('canvas');
+                var imageURL = canvas.toDataURL('image/png');
+                var images = JSON.parse(localStorage.getItem('images')) || [];
+                images.unshift(imageURL);
+                localStorage.setItem('images', JSON.stringify(images));
+            }
+
+            // 이전 실험 일지
+            function toggleGallery() {
+                var galleryContainer = document.querySelector('#gallery-container');
+                if (galleryContainer.classList.contains('active')) {
+                    // 갤러리 숨기기
+                    galleryContainer.classList.remove('active');
+                    setTimeout(function() {
+                        galleryContainer.style.display = 'none';
+                    }, 500); // transition 효과가 끝난 후에 display 속성을 변경
+                } else {
+                    // 이미지 불러오기
+                    var images = JSON.parse(localStorage.getItem('images')) || [];
+                    var galleryImages = document.querySelector('#gallery-images');
+                    galleryImages.innerHTML = '';
+                    images.slice().reverse().forEach(function(imageURL, index) {
+                        var img = document.createElement('img');
+                        img.src = imageURL;
+                        img.style.width = '100%';
+                        img.style.marginBottom = '10px';
+                        img.style.cursor = 'pointer'; // 마우스 커서를 포인터로 변경
+                        img.onclick = function() { // 이미지를 클릭했을 때의 이벤트 핸들러
+                            var modal = document.createElement('div'); // 모달 창 생성
+                            modal.style.position = 'fixed';
+                            modal.style.top = '0';
+                            modal.style.left = '0';
+                            modal.style.width = '100%';
+                            modal.style.height = '100%';
+                            modal.style.backgroundColor = 'rgba(0,0,0,0.5)'; // 반투명한 검은색 배경
+                            modal.style.display = 'flex';
+                            modal.style.justifyContent = 'center';
+                            modal.style.alignItems = 'center';
+                            modal.style.zIndex = '1000';
+                            modal.onclick = function() { // 모달 창을 클릭했을 때의 이벤트 핸들러
+                                document.body.removeChild(modal); // 모달 창 제거
+                            };
+            
+                            var modalImg = document.createElement('img'); // 모달 창에 표시될 이미지 생성
+                            modalImg.src = imageURL;
+                            modalImg.style.maxWidth = '90%'; // 이미지의 최대 너비를 90%로 설정
+                            modalImg.style.maxHeight = '90%'; // 이미지의 최대 높이를 90%로 설정
+            
+                            var prevButton = document.createElement('button');
+                            prevButton.textContent = '<';
+                            prevButton.className = 'gallery-button'
+                            prevButton.onclick = function(e) {
+                                e.stopPropagation();
+                                if (index > 0) {
+                                    modalImg.src = images[--index];
+                                    updateButtonState();
+                                }
+                            };
+
+                            var nextButton = document.createElement('button');
+                            nextButton.textContent = '>';
+                            nextButton.className = 'gallery-button'
+                            nextButton.onclick = function(e) {
+                                e.stopPropagation();
+                                if (index < images.length - 1) {
+                                    modalImg.src = images[++index];
+                                    updateButtonState();
+                                }
+                            };
+
+                            function updateButtonState() {
+                                prevButton.disabled = index === 0;
+                                nextButton.disabled = index === images.length - 1;
+                            }
+
+                            updateButtonState();
+
+                            modal.appendChild(prevButton);
+                            modal.appendChild(modalImg);
+                            modal.appendChild(nextButton);
+                            document.body.appendChild(modal); // body에 모달 창 추가
+
+                            // 이미지가 로드된 후에 버튼의 높이를 이미지의 높이로 설정
+                            modalImg.onload = function() {
+                                prevButton.style.height = modalImg.offsetHeight + 'px';
+                                nextButton.style.height = modalImg.offsetHeight + 'px';
+                            };
+                        };        
+                        galleryImages.appendChild(img);
+                    });
+
+                    // 갤러리 표시
+                    galleryContainer.style.display = 'block';
+                    setTimeout(function() {
+                        galleryContainer.classList.add('active');
+                    }, 0); // display 속성이 변경된 후에 transition 효과를 시작
+                }
+            }
+
+            function clearGallery() {
+                // Local Storage에서 이미지 URL들을 제거
+                localStorage.removeItem('images');
+
+                // 갤러리 내용 비우기
+                document.querySelector('#gallery-images').innerHTML = '';
+            }
+
+            document.querySelector('#close-gallery').addEventListener('click', toggleGallery);
+            document.querySelector('#clear-gallery').addEventListener('click', clearGallery);
+            // 애니메이션 함수
+            function typePlaceholder() {
+                if (isInitialClick) {
+                    if (isDeleting && placeholderIndex > 0) {
+                        // 삭제 상태이고, placeholderIndex가 0보다 클 때
+                        placeholderIndex--;
+                        inputElement.placeholder = placeholderTexts[placeholderTextIndex].substring(0, placeholderIndex);
+                    } else if (!isDeleting && placeholderIndex < placeholderTexts[placeholderTextIndex].length) {
+                        // 입력 상태이고, placeholderIndex가 placeholderText의 길이보다 작을 때
+                        placeholderIndex++;
+                        inputElement.placeholder = placeholderTexts[placeholderTextIndex].substring(0, placeholderIndex);
+                    }
+
+                    // 입력/삭제 상태 전환
+                    if (!isDeleting && placeholderIndex == placeholderTexts[placeholderTextIndex].length) {
+                        isDeleting = true;
+                        placeholderDelay = 2000; // 입력 완료 후 2초간 지연
+                    } else if (isDeleting && placeholderIndex == 0) {
+                        isDeleting = false;
+                        placeholderDelay = 2000; // 삭제 완료 후 2초간 지연
+                        placeholderTextIndex = (placeholderTextIndex + 1) % placeholderTexts.length; // 문장 번갈아가면서 표시
+                    } else {
+                        placeholderDelay = typingSpeed;
+                    }
+
+                    setTimeout(typePlaceholder, placeholderDelay);
+                }
+            }
+
+            // 애니메이션 시작
+            setTimeout(typePlaceholder, placeholderDelay);
+            
+            inputElement.addEventListener('focus', function() {
+                if (isInitialClick || isDeleting || placeholderIndex < placeholderText.length) {
+                    this.placeholder = ''; // placeholder를 빈 문자열로 설정
+                    isInitialClick = false;
+                }
+            });
+            
+            inputElement.addEventListener('keydown', async function(event) {
+                if (event.key === 'Enter' && !isProcessing) {
+
+                    // 갤러리 컨테이너가 열려있는지 확인하고, 열려있다면 닫기
+                    var galleryContainer = document.querySelector('#gallery-container');
+                    if (galleryContainer.classList.contains('active')) {
+                        galleryContainer.classList.remove('active');
+                        setTimeout(function() {
+                            galleryContainer.style.display = 'none';
+                        }, 500);
+                    }
+
+                    event.preventDefault();
+                    let inputText = this.value;
+            
+                if (isFirstEnter) {
+                    isProcessing = true;
+
+                    // id를 이용하여 해당 요소를 선택
+                    const instruction1 = document.querySelector('#instruction1');
+                    const instruction2 = document.querySelector('#instruction2');
+                    const glyphContainerElement = document.querySelector('.glyph-container');
+                    const instruction3 = document.querySelector('#instruction3');
+                    const instruction4 = document.querySelector('#instruction4');
+
+                    // 선택한 요소의 display 속성을 none으로 설정
+                    instruction1.style.display = 'none';
+                    instruction2.style.display = 'none';
+                    glyphContainerElement.style.display = 'none';
+                    instruction3.style.display = 'none';
+                    instruction4.style.display = 'none';
+
+
+                    // Convert the original textarea to a canvas
+                    html2canvas(inputElement, { scale: 1 }).then(function(canvas) {
+                        // Convert the canvas to an image
+                        var img = new Image();
+                        img.src = canvas.toDataURL();
+                    
+                        // Set the position and style of the image
+                        img.style.position = 'fixed';
+                        img.style.top = '50%'; // 이 값을 조정하여 캔버스의 상단 위치를 변경
+                        img.style.left = '50%'; // 이 값을 조정하여 캔버스의 왼쪽 위치를 변경
+                        img.style.transform = 'translate(-50%, -50%)';
+                        img.style.width = '70%'; // 원본 textarea의 width와 동일하게 설정
+                        img.style.minHeight = '20vh';
+                        img.style.maxHeight = '100vh';
+                        img.style.boxSizing = 'border-box';
+                        img.style.fontSize = '100px'; // 원본 textarea의 fontSize와 동일하게 설정
+                        img.style.color = 'red';
+                        img.style.backgroundColor = 'transparent';
+                        img.style.textAlign = 'center';
+                        img.style.whiteSpace = 'pre-wrap';
+                        img.style.overflowWrap = 'break-word';
+                        img.style.wordBreak = 'keep-all'; // 원본 textarea의 word-break 속성 적용
+                        img.style.overflow = 'hidden';
+
+                        // Add an ID to the image
+                        img.id = 'uniqueID';
+
+                        // Replace the textarea with the image
+                        document.body.replaceChild(img, inputElement);
+
+                        // Apply the Reaction-Diffusion effect to the image
+                        initReactionDiffusion(img.src);
+
+                    });
+            
+                        // Use the original inputText for sentence distortion
+                        const response = await fetchApi(inputText, 0);
+                        const aiResponse = response.choices[0].message.content;
+                        addChat(aiResponse);
+            
+                        // 결과 문장이 완성된 후에 '분열 결과 저장하기'와 '실험 다시하기' 텍스트를 표시
+                        const afterTextElement = document.querySelector('#after-text');
+                        afterTextElement.style.display = 'block'; 
+
+                        isFirstEnter = false;
+                        isProcessing = false;
+
+                        // 5초 후에 start 함수 호출
+                        setTimeout(function() {
+                            start(startButton);
+                        }, 1000); // 5000ms = 5s
+                    }
+                }
+            });
+
+            //Reaction-Diffusion
+            var canvas;
+            var ctx;
+
+            var cellSize = 1;
+            var w = 800;
+            var h = 400;
+            var pixels;
+            var image;
+
+            var da = 1.0;
+            var db = 0.35;
+            var f = 0.055, k = 0.062;
+            var t = 1;
+
+            var grids = [];
+            var tick = 0;
+
+            function createGrid(val) {
+            var g = new Array(h);
+            for(var y = 0; y < h; y++) {
+                g[y] = new Array(w);
+                for(var x = 0; x < w; x++) {
+                g[y][x] = val;
+                }  
+            }
+            return g;
+            }
+
+            function addImageToGrid(grid, imgSrc) {
+                var img = new Image();
+                img.crossOrigin = "Anonymous";
+            
+                img.onload = function () {
+                    var x0 = (w - img.width) / 2;
+                    var y0 = h / 2 - img.height / 2;
+                    ctx.drawImage(img, x0, y0);
+                
+                    var tempImage = ctx.getImageData(0, 0, w, h);
+                    var buffer32 = new Uint32Array(tempImage.data.buffer);
+                    for(var x = 0; x < w; x++) {
+                    for(var y = 0; y < h; y++) {
+                        // The buffer is linear, y*w+x is a trick
+                        // to calculate the linear index.
+                        if (buffer32[y * w + x]) {
+                        // There is a pixel here
+                        grid[y][x] = [1, 1];
+                        }
+                    }    
+                    }
+                }
+                img.src = imgSrc;
+            }
+
+
+            function step() {
+            var currentGrid = grids[tick%2];
+            var newGrid = grids[(tick+1)%2];
+            for(var i = 1; i < h-1; i++) {
+                for(var j = 1; j < w-1; j++) {
+                var currentCell = currentGrid[i][j];
+                var oldA = currentCell[0];
+                var oldB = currentCell[1];
+                var a = oldA + (da * laplaceA(i, j) - oldA * oldB * oldB + f *(1-oldA)) * t;
+                var b = oldB + (db * laplaceB(i, j) + oldA * oldB * oldB - (k + f) * oldB) * t;
+                a = constrain(a, 0, 1);
+                b = constrain(b, 0, 1);
+                newGrid[i][j] = [a, b];
+                }  
+            }
+            tick++;
+            }
+
+            function laplaceA(x, y) {
+            return laplace(x, y, 0);  
+            }
+            function laplaceB(x, y) {
+            return laplace(x, y, 1);
+            }
+            
+            function laplace(x, y, aOrB) {
+            var diag = 0.05;
+            var close = 0.2;
+            var grid = grids[tick%2];
+
+            return grid[x-1][y-1][aOrB] * diag + // upper left corner
+                grid[x  ][y-1][aOrB] * close + // above
+                grid[x+1][y-1][aOrB] * diag + // right corner
+                grid[x-1][y  ][aOrB] * close + // left
+                grid[x  ][y  ][aOrB] * (-1) + // center
+                grid[x+1][y  ][aOrB] * close + // right
+                grid[x-1][y+1][aOrB] * diag + // lower left corner
+                grid[x  ][y+1][aOrB] * close + // under
+                grid[x+1][y+1][aOrB] * diag ; // lower right corner
+            }
+
+            function draw() {
+            var grid = grids[tick%2];
+            for(var i = 0; i < h; i++) {
+                for(var j = 0; j < w; j++) {
+                var currentCell = grid[i][j];
+                var a = currentCell[0];
+                var b = currentCell[1];
+                var diff = Math.round((b-a)*254);
+                // Ignore endianness by using diff for all 32 bytes
+                var color = (diff << 24) + (diff << 16) + (diff << 8) + diff;
+                pixels[i*w+j]= color;
+                }
+            }
+            ctx.putImageData(image, 0, 0);
+            }
+
+            function constrain(value, min, max) {
+            return (Math.min(max, Math.max(min, value)));
+            }
+
+            function loop() {
+            for(var i = 0; i < 10; i++) {
+                step();
+            }
+            draw();
+            if (tick < 800) { // 1000은 원하는 횟수로 변경하면 됩니다.
+                requestAnimationFrame(loop);
+            }
+        }
+
+            function initReactionDiffusion(imgSrc) {
+            
+            canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            canvas.width = w * cellSize;
+            canvas.height = h * cellSize;
+            
+            grids[0] = createGrid([1, 0]);
+            grids[1] = createGrid([1, 0]);
+
+            addImageToGrid(grids[0], imgSrc);
+
+            image = ctx.getImageData(0, 0, w, h);
+            pixels = new Uint32Array(image.data.buffer);
+            }
+
+            function start (button) {
+            button.disabled = true;
+
+            // Clear the image
+            var img = document.getElementById('uniqueID');
+            img.style.display = 'none';            
+            
+            loop();
+            }
+
+
+            window.onload = function() {
+            init();
+            }
+
+            // 메시지를 화면에 추가하는 함수
+            async function addChat(message) {
+                const chatContent = document.querySelector('.chat-content');
+                const words = message.split(' ');
+                const numWordsToAnimate = Math.floor(words.length * 0.2);
+                let animatedIndices = [];
+            
+                while (animatedIndices.length < numWordsToAnimate) {
+                    const randomIndex = Math.floor(Math.random() * words.length);
+                    if (!animatedIndices.includes(randomIndex)) {
+                        animatedIndices.push(randomIndex);
+                    }
+                }
+            
+                for (let i = 0; i < words.length; i++) {
+                    const messageElement = document.createElement('span');
+                    messageElement.textContent = words[i] + ' ';
+                    messageElement.style.display = 'inline';
+                    if (animatedIndices.includes(i)) {
+                        const clonedElement = messageElement.cloneNode(true); // 요소를 복제
+                        clonedElement.style.position = 'absolute';
+                        messageElement.style.animation = `boldness ${Math.random() * 5 + 1}s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite`;
+                    }
+                    chatContent.appendChild(messageElement);
+                    await new Promise(resolve => setTimeout(resolve, 60)); // 60ms 지연
+                }
+                
+                // 모든 메시지 출력 후 공유 버튼 보이게 설정
+                shareButton.style.display = 'block';
+            }
+            
+            // '분열 결과 저장하기' 텍스트에 이벤트 리스너 추가
+            document.querySelector('#share-text').addEventListener('click', function() {
+                // 표를 투명하게 만듦
+                var table = document.querySelector('#share-table');
+                table.style.opacity = '0';
+            
+                html2canvas(document.body, {
+                    onclone: function(document) {
+                        document.querySelector("#share-table").style.opacity = '0';
+                    }
+                }).then(function(canvas) {
+                    var img = canvas.toDataURL();
+                    var link = document.createElement('a');
+                    link.href = img;
+                    link.download = '언어의 곰팡이.png'; // '언어의 곰팡이'라는 이름으로 파일 다운로드
+                    link.click();
+            
+                    // 이미지를 Local Storage에 저장
+                    var images = JSON.parse(localStorage.getItem('images')) || [];
+                    images.push(img);
+                    localStorage.setItem('images', JSON.stringify(images));
+            
+                    // 표를 다시 보이게 함
+                    table.style.opacity = '1';
+                });
+            });
+            
+
+            // OpenAI API 호출 함수
+            async function fetchApi(inputText, system) {
+                const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+                const apiKey = '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';
+            
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`,
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo-1106",
+                        messages: [
+                            {
+                                role: "system",
+                                content: "당신은 왜곡하고 과장하는 것을 좋아하는 짓궂은 AI입니다. 사용자의 입력을 토대로 인과관계 시나리오를 작성합니다. 말도 안 되는 소리나 황당해도 괜찮습니다. 간단한 단어나 문장을 어디까지 확장할 수 있는지 보여줘.", 
+                                // You are a mischievous AI who loves to distort and exaggerate. Based on the user's input, create a cause and effect scenario. Even if it's nonsensical or absurd, that's okay. Let's see how far you can stretch a simple word or sentence.
+                            },
+                            {
+                                role: "user",
+                                content: inputText,
+                            },
+                        ],
+                        max_tokens: 1000,
+                    }),
+                });
+                return response.json();
+            }
+            
+            // 입력창 높이 자동 조절
+            document.querySelector('#input').addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });            
+    </script>
+</body>
+</html>
