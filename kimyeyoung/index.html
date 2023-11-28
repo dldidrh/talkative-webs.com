@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop nagging me</title>
+    <link rel="stylesheet" href="https://use.typekit.net/tcd4dts.css">
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #ff0000 40%, #ffffff);
+            background-size: cover;
+            background-position: center;
+            font-family: "aviano-future", sans-serif;
+            font-weight: 800;
+            font-style: normal;
+        }
+        #iconPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+#iconPopupContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    background: white;
+    text-align: center;
+    width: 60%;
+    height: 40%;
+    max-width: 50%;
+    overflow: auto;
+    border: 2px solid #000000;
+    z-index: 1000;
+    color: #000;
+}
+
+#iconPopupContent {
+    font-size: 1vw;
+    margin-bottom: 1vw;
+}
+#iconPopupContent::-webkit-scrollbar {
+    width: 12px; /* 스크롤바의 너비 조절 */
+    height: 150px;
+}
+#iconPopupContent::-webkit-scrollbar-thumb {
+    background-color: #ff0000; /* 스크롤바 색상 */
+    -webkit-text-stroke-color: #000;
+    -webkit-text-stroke-width: #000;
+}
+#iconPopupContent::-webkit-scrollbar-track {
+    background-color: #fff; /* 스크롤바 트랙의 색상 */
+}
+
+.rebut-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.rebut-button {
+    padding: 15px 30px;
+    font-size: 50px;
+    /*font-weight: bold;*/
+    background-color: #ffffff;
+    border: 2px solid #000;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.rebut-button:hover {
+    background-color: #ff0000;
+}
+
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .image-container {
+            position: absolute;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+            animation: shake 0.5s ease infinite;
+        }
+
+        #animatedTextContainer {
+            position: absolute;
+            top: -5%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .shuffle-text {
+            display: inline-block;
+            font-size: 130px;
+            cursor: pointer;
+            /* 추가된 부분 */
+        }
+
+        #cursorImage {
+            width: 5%;
+            position: absolute;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 999;
+            /* 팝업 창을 최상위로 올리는 z-index 값 설정 */
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border-radius: 3px;
+            text-align: center;
+            width: 60%;
+            height: 40%;
+            overflow: auto;
+            border: 3px solid #000000;
+            z-index: 1000;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+        .clickable-image {
+    /* 이미지에 대한 스타일 */
+    cursor: pointer;
+    /* ... 추가적인 스타일 */
+}
+        @keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(8px); /* 변화량을 더 크게 조절합니다. */
+    }
+
+    50% {
+        transform: translateX(-8px); /* 반대 방향으로 크게 이동합니다. */
+    }
+
+    75% {
+        transform: translateX(5px); /* 더 큰 변화량을 주어 효과를 강화합니다. */
+    }
+}
+
+
+.new-image {
+            position: fixed;
+            bottom: 5%;
+            right: 3%;
+            /* 이미지 크기 조절 */
+            width: 5%;
+            /* 원하는 너비 */
+            height: auto;
+            /* 높이 자동 조정 */
+        }
+        
+        .rebut-button-container {
+        margin-top: 20px;
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .rebut-button {
+        padding: 20px 40px;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #ffffff; /* 배경색 */
+        border: 2px solid #000;
+        color: rgb(0, 0, 0); /* 글자색 */
+        border-radius: 1px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 30px;
+        margin-bottom: 50px; /* 버튼 바로 아래 요소와의 여백 조절 */
+    }
+
+    .rebut-button:hover {
+        background-color: #ff0000; /* 마우스 호버시 배경색 변경 */
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="animatedTextContainer">
+        <!-- shuffle-text를 눌렀을 때 팝업 열기 -->
+        <h1 id="animatedText" class="shuffle-text" onclick="openShufflePopup()">$!#%&</h1>
+    </div>
+
+    <!-- shuffle-text를 위한 팝업 창 -->
+    <div class="popup" id="shufflePopup">
+        <div class="popup-content" id="shufflePopupContent">
+            <br>
+            <h1>잔소리 퇴치 !</h1><br>
+            <p>" 너의 잔소리는 정말이지 구린내가 난단 말이야 ! "</p>
+            <p>당신을 향한 잔소리가 마치 폭탄처럼 쏟아지는 순간들이 있었나요 ? </p>
+            <p>일명 ' 잔소리 퇴치 ! ' 웹사이트는 그 폭탄과 같은 잔소리에 효과적으로 대비할 수 있도록 합니다.</p>
+            <p>곳곳에서 터지는 잔소리를 잡아서 쓰레기통에 던져버리세요! </p>
+            <p>그리고 마음껏 반박하며 욕하세요 ! ! </p>
+            <br><br>
+            <p>- 잔소리에 지쳐버린 킴코즈 드림 . . . -</p>
+            
+            
+            <div class="close-button" onclick="closeShufflePopup()">X</div>
+        </div>
+    </div>
+
+    <!-- icon.png를 눌렀을 때 나오는 팝업 창 -->
+    <div class="popup" id="iconPopup">
+        <div class="popup-content" id="iconPopupContent">
+            <!-- 텍스트를 표시할 컨테이너 추가 -->
+            <div id="textContainer"></div>
+             <!-- 새로운 '반박하기' 버튼 -->
+        <div class="rebut-button-container">
+            <button class="rebut-button" onclick="goToPage()">너나 잘하세요!!</button>
+            
+        </div>
+
+        <div class="close-button" onclick="closeIconPopup()">X</div>
+    </div>
+</div>
+
+
+    <script>
+        const pngFiles = [
+            { src: "text_1.png", text: "넌 옷이 그거밖에 없니?" },
+            { src: "text_2.png", text: "넌 도대체 누굴 닮아 그러니?" },
+            { src: "text_3.png", text: "에휴 자식 이기는 부모 없다더니.." },
+            { src: "text_4.png", text: "밖에만 싸돌아다니지 말고 집에 조신히 있어" },
+            { src: "text_5.png", text: "이게 다 피가 되고 살이 되는 말이야" },
+            { src: "text_6.png", text: "크리스마슨데 만날 사람 없니?" },
+            { src: "text_7.png", text: "좀 쪘다?" },
+            { src: "text_8.png", text: "시간 없어서 못한 거 아니잖아" },
+            { src: "text_9.png", text: "많이 하셔야 늘어요" },
+            { src: "text_10.png", text: "무슨 옷을 또 사! 옷장에 옷이 차고 넘치는데" },
+            { src: "text_11.png", text: "아이돌이 너 밥 먹여주니?" },
+            { src: "text_12.png", text: "퍼질러 누워있지 말고 나가서 운동 좀 해!" },
+            { src: "text_13.png", text: "다 너 잘 되라고 하는 소리잖아.. ㅋㅋ" },
+            { src: "text_14.png", text: "왜 그렇게 예민한데?" },
+            { src: "text_15.png", text: "미술이면 공부 안해도 되지 않아?" },
+            { src: "text_16.png", text: "결혼할 애인은 있고?" },
+            { src: "text_17.png", text: "하라는 공부는 안 하고 연애질만 하고 있다는 거 아냐" },
+            { src: "text_18.png", text: "방 꼬라지가 이게 뭐니? 돼지 우리가 따로 없네!" },
+            { src: "text_19.png", text: "그렇게 펑펑 써서 언제 모을래!" },
+            { src: "text_20.png", text: "독립 해야지" },
+            { src: "text_21.png", text: "빨리 해. 지금 해. 3 2 1 " },
+            { src: "text_22.png", text: "졸업은 언제 하게?" },
+            { src: "text_23.png", text: "애 키가 너무 작네 한약 좀 먹여라" },
+            { src: "text_24.png", text: "취업은 했니?" },
+            { src: "text_25.png", text: "그게 스펙에 도움이 돼?" },
+            { src: "text_26.png", text: "너도 너랑 똑같은 자식 한 번 낳아봐 " },
+        ];
+
+        const images = [];
+
+    
+        function createImage() {
+    const imgContainer = document.createElement("div");
+    const img = document.createElement("img");
+
+    const randomImage = pngFiles[Math.floor(Math.random() * pngFiles.length)];
+
+    img.src = randomImage.src;
+
+    imgContainer.classList.add("clickable-image", "image-container");
+
+    
+
+    imgContainer.style.position = "absolute";
+    imgContainer.style.left = `${Math.random() * (window.innerWidth - 200)}px`;
+    imgContainer.style.top = `${Math.random() * (window.innerHeight - 200)}px`;
+
+    imgContainer.addEventListener("click", () => {
+    console.log("Image clicked!"); // Debugging log
+    onImageClick(imgContainer);
+});
+
+    // 이미지의 원본 비율을 유지하면서 랜덤하게 크기 조정
+    const maxWidth = 260; // 이미지의 최대 가로 길이
+    const maxHeight = 150; // 이미지의 최대 세로 길이
+    const minWidth = 120; // 이미지의 최소 가로 길이
+    const minHeight = 90; // 이미지의 최소 세로 길이
+
+    // 비율 계산
+    const originalWidth = 150; // 이미지의 원본 가로 길이
+    const originalHeight = 48; // 이미지의 원본 세로 길이
+    const ratio = originalWidth / originalHeight;
+
+    // 랜덤 가로와 세로 길이 생성
+    const randomWidth = Math.floor(Math.random() * maxWidth) + 100; // 가로 길이의 범위를 설정
+    const randomHeight = Math.min(Math.floor(randomWidth / ratio), maxHeight);
+
+    img.style.width = `${randomWidth}px`;
+    img.style.height = `${randomHeight}px`;
+
+    imgContainer.appendChild(img);
+    document.getElementById("container").appendChild(imgContainer);
+
+   
+
+            const randomDirectionX = Math.random() > 0.5 ? 1 : -1;
+            const randomDirectionY = Math.random() > 0.5 ? 1 : -1;
+
+            img.addEventListener("click", () => {
+                imgContainer.style.display = "none";
+                changeCursorImage("cursor2.png");
+                setTimeout(() => changeCursorImage("cursor.png"), 500);
+
+                // 이미지 클릭 시 해당 이미지에 연결된 텍스트를 icon 팝업에 추가
+                const iconPopupContent = document.getElementById("iconPopupContent");
+                const textElement = document.createElement("p");
+                textElement.innerText = `${randomImage.text} (${getCurrentDateTime()})`;
+                iconPopupContent.appendChild(textElement);
+            });
+
+            images.push({ element: imgContainer, directionX: randomDirectionX, directionY: randomDirectionY });
+
+            if (images.length > 100) {
+                clearInterval(intervalHandle);
+            }
+        }
+
+        function getCurrentDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        function handleEdgeBounce(imageInfo) {
+            const imgContainer = imageInfo.element;
+
+            const currentX = parseFloat(imgContainer.style.left);
+            const currentY = parseFloat(imgContainer.style.top);
+            const width = parseFloat(imgContainer.querySelector("img").width);
+            const height = parseFloat(imgContainer.querySelector("img").height);
+
+            const nextX = currentX + imageInfo.directionX * 3;
+            const nextY = currentY + imageInfo.directionY * 3;
+
+            // 레이아웃을 벗어나지 않도록 보정
+            if (nextX < 0) {
+                imageInfo.directionX = 1;
+            } else if (nextX + width > window.innerWidth) {
+                imageInfo.directionX = -1;
+            }
+
+            if (nextY < 0) {
+                imageInfo.directionY = 1;
+            } else if (nextY + height > window.innerHeight) {
+                imageInfo.directionY = -1;
+            }
+
+            imgContainer.style.transform = `translate(${nextX}px, ${nextY}px)`;
+        }
+
+        function animateImages() {
+            for (const imageInfo of images) {
+                handleEdgeBounce(imageInfo);
+            }
+
+            requestAnimationFrame(animateImages);
+        }
+
+        var intervalHandle = setInterval(createImage, 100);
+        requestAnimationFrame(animateImages);
+
+        function shuffleString(text) {
+            var characters = text.split('');
+            for (var i = characters.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = characters[i];
+                characters[i] = characters[j];
+                characters[j] = temp;
+            }
+            return characters.join('');
+        }
+
+        function shuffleText() {
+            var text = document.getElementById("animatedText").innerText;
+            var shuffledText = shuffleString(text);
+            document.getElementById("animatedText").innerText = shuffledText;
+        }
+
+        function openShufflePopup() {
+            document.getElementById("shufflePopup").style.display = "block";
+        }
+
+        function closeShufflePopup() {
+            document.getElementById("shufflePopup").style.display = "none";
+            // 팝업이 닫힐 때마다 텍스트 초기화
+            const shufflePopupContent = document.getElementById("shufflePopupContent");
+            
+        }
+
+        function openIconPopup() {
+            const iconPopup = document.getElementById("iconPopup");
+            iconPopup.style.display = "block";
+            const iconPopupContent = document.getElementById("iconPopupContent");
+            const closeButton = document.createElement("div");
+            closeButton.classList.add("close-button");
+            closeButton.innerText = "X";
+            closeButton.onclick = closeIconPopup; // 닫기 버튼 클릭 시 팝업 닫기
+            iconPopupContent.appendChild(closeButton);
+        }
+
+        function closeIconPopup() {
+            const iconPopup = document.getElementById("iconPopup");
+            iconPopup.style.display = "none";
+            const iconPopupContent = document.getElementById("iconPopupContent");
+           
+        }
+
+        shuffleText();
+
+        setInterval(shuffleText, 100);
+
+        const cursorImage = new Image();
+        cursorImage.src = "cursor.png";
+        cursorImage.id = "cursorImage";
+        document.body.appendChild(cursorImage);
+
+        document.body.addEventListener("mousemove", (e) => {
+            cursorImage.style.left = e.pageX + "px";
+            cursorImage.style.top = e.pageY + "px";
+        });
+
+        document.body.style.cursor = "none";
+
+        function changeCursorImage(imageSrc) {
+            cursorImage.src = imageSrc;
+        }
+
+        // 이미지 생성 함수
+        function createNewImage() {
+            const newImage = document.createElement("img");
+            newImage.src = "icon2.png"; // 여기에 이미지 파일 경로를 입력하세요.
+            newImage.classList.add("new-image");
+            newImage.addEventListener("click", openIconPopup);
+            document.body.appendChild(newImage);
+        }
+
+
+        createNewImage(); // 페이지 로드 시 이미지 생성
+
+        function rebut() {
+        // 여기에 반박하기 버튼이 눌렸을 때 할 일을 적어주세요.
+        // 예를 들어, 팝업창에 텍스트를 추가하거나 다른 동작을 실행할 수 있습니다.
+    }
+    function goToPage() {
+        window.location.href = 'page1.html';
+    }
+    const iconImage = document.querySelector('.new-image'); // 이미지 요소 선택
+
+// 마우스가 이미지에 진입할 때
+iconImage.addEventListener('mouseenter', function() {
+    this.src = 'icon1.png'; // 이미지 소스 변경
+});
+
+// 마우스가 이미지에서 빠져나갈 때
+iconImage.addEventListener('mouseleave', function() {
+    this.src = 'icon2.png'; // 이미지 소스 변경
+});
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop nagging me</title>
+    <link rel="stylesheet" href="https://use.typekit.net/tcd4dts.css">
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #ff0000 40%, #ffffff);
+            background-size: cover;
+            background-position: center;
+            font-family: "aviano-future", sans-serif;
+            font-weight: bold;
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        #topText {
+            position: absolute;
+            top: 7%; /* 텍스트의 상단 여백을 조절하세요. */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 800%;
+            font-weight: bold;
+            color: #000000; /* 텍스트 색상 */
+           
+        }
+
+        #container {
+            position: relative;
+        }
+
+        #cursorImage {
+            width: 4.5%;
+            position: absolute;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+
+        #textInputContainer {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        #inputBar {
+            position: absolute;
+            width: 420px;
+            height: 20px;
+            background-color: #ff0000;
+            border: 2px solid #000000;
+            top: 30;
+        }
+
+        #textInput {
+            width: 400px;
+            height: 200px;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #000000;
+            border-radius: 0px;
+            margin-bottom: 20px;
+            padding-top: 10px; /* 텍스트의 상단 여백을 조절합니다. */
+            outline: none;
+        }
+
+        #submitBtn {
+            padding: 5px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid #000000;
+            border-radius: 0px;
+            background-color: #ffffff;
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            transition: background-color 0.3s, color 0.3s; /* 트랜지션 효과 설정 */
+        }
+
+        #submitBtn:hover {
+            background-color: #ff0000;
+            color: #000000;
+        }
+
+        .close-btn {
+    padding: 17px 40px; /* 위아래 20px, 좌우 40px의 여백 */
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 2px solid #000;
+    color: rgb(0, 0, 0);
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-decoration: none;
+    width: 300px; /* 너비 조정 */
+        }
+
+        .close-btn:hover {
+            text-decoration: none;
+        }
+
+        #submitBtn {
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .echo {
+            position: absolute;
+            animation: echoEffect 2s forwards;
+        }
+
+        .greeting-overlay, .response-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            z-index: 10000;
+            display: none; /* 초기에는 안 보이도록 설정 */
+
+        }
+
+        .overlay-content {
+            margin-bottom: 20px;
+        }
+
+        .greeting-text, .response-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Hover 시 배경색 변경 */
+.close-btn:hover,
+.rebut-button:hover {
+    background-color: #ff0000;
+    color: #000000;
+    text-decoration: none;
+}
+
+        @keyframes echoEffect {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .rebut-button-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rebut-button {
+    padding: 21px 40px; /* 위아래 20px, 좌우 40px의 여백 */
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 2px solid #000;
+    color: rgb(0, 0, 0);
+    border-radius: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 300px; /* 너비 조정 */
+}
+
+        .rebut-button:hover {
+            background-color: #ff0000;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="textInputContainer">
+            <div id="inputBar"></div>
+            <input type="text" id="textInput" placeholder="보자보자하니까 내가 보자기로..." onkeydown="handleEnter(event)">
+            <button id="submitBtn" onclick="submitText()">퇴치!</button>
+        </div>
+    </div>
+
+    <div class="greeting-overlay" id="greetingOverlay">
+        <div class="overlay-content">
+            <div class="greeting-text">꒪ꄱ꒪<br><br>당신의 반박 잘 들었습니다.<br>이제 속이 좀 풀리셨는지요...</div>
+        </div>
+    </div>
+
+
+    <div class="response-overlay" id="responseOverlay">
+        <div class="overlay-content">
+            <div class="response-text">다른 잔소리를 반박하시겠습니까?</div>
+            <button class="close-btn" onclick="closeOverlay('responseOverlay')"> ꐦಠہಠ<br>아직 할 말이 많아.. </button>
+            <button class="rebut-button" onclick="goToMainPage()">(⌐■_■)–︻╦╤─<br>새로운 잔소리 잡으러 가기!</button>
+        </div>
+    </div>
+    <div class="popup" id="iconPopup">
+        <div class="popup-content" id="iconPopupContent">
+            <div id="textContainer"></div>
+            <div class="rebut-button-container">
+
+            </div>
+        </div>
+    </div>
+    <img id="customImg" src="your_default_image.png" style="display: none;" />
+
+
+    <script>
+        const cursorImage = new Image();
+        cursorImage.src = "cursor3.png";
+        cursorImage.id = "cursorImage";
+        document.body.appendChild(cursorImage);
+
+        document.body.addEventListener("mousemove", (e) => {
+            cursorImage.style.left = e.pageX + "px";
+            cursorImage.style.top = e.pageY + "px";
+        });
+        document.body.style.cursor = "none";
+
+        function changeCursorImage(imageSrc) {
+            cursorImage.src = imageSrc;
+        }
+
+        function submitText() {
+            const textInput = document.getElementById('textInput');
+            const enteredText = textInput.value;
+
+            // 생성할 메아리의 개수
+            const numberOfEchoes = 40;
+
+            // 메아리 생성 간격 (밀리초)
+            const echoInterval = 100;
+
+            for (let i = 0; i < numberOfEchoes; i++) {
+                setTimeout(() => {
+                    createEcho(enteredText);
+                }, i * echoInterval);
+            }
+
+            
+
+            // 텍스트 박스 초기화
+            textInput.value = '';
+
+            // 메아리가 끝난 후 인사말 표시
+            setTimeout(() => {
+                showGreeting();
+            }, numberOfEchoes * echoInterval);
+
+            changeCursorImage("cursor4.png"); // 변경하고자 하는 이미지 주소로 수정해주세요.
+            setTimeout(() => changeCursorImage("cursor3.png"), 500);
+            }
+
+        function createEcho(enteredText) {
+            // 텍스트 엘리먼트 생성
+            const echoText = document.createElement('div');
+            echoText.textContent = enteredText;
+            echoText.classList.add('echo');
+            echoText.style.left = Math.random() * window.innerWidth + 'px';
+            echoText.style.top = Math.random() * window.innerHeight + 'px';
+
+            // 텍스트를 body에 추가
+            document.body.appendChild(echoText);
+
+            // 애니메이션 종료 후 삭제
+            setTimeout(() => {
+                echoText.remove();
+            }, 3000);
+        }
+
+        function handleEnter(event) {
+            if (event.key === "Enter") {
+                submitText();
+            }
+        }
+
+        function showGreeting() {
+            const greetingOverlay = document.getElementById('greetingOverlay');
+            greetingOverlay.style.display = 'flex';
+            setTimeout(() => {
+                greetingOverlay.style.display = 'none';
+                // 메아리가 끝나고 다른 잔소리 창 표시
+                showResponse();
+            }, 3000);
+        }
+
+        function showResponse() {
+            const responseOverlay = document.getElementById('responseOverlay');
+            responseOverlay.style.display = 'flex';
+        }
+
+        function closeOverlay(overlayId) {
+            const overlay = document.getElementById(overlayId);
+            overlay.style.display = 'none';
+        }
+        function rebut() {
+            const rebutButton = document.querySelector('.rebut-button');
+            rebutButton.style.display = 'none';
+        }
+
+        function goToMainPage() {
+            window.location.href = 'index.html'; // 'index.html'은 첫 화면의 파일명에 맞게 수정하세요.
+        }
+
+        // img 요소에 대한 클릭 이벤트 리스너 추가
+    const customImg = document.getElementById('customImg');
+
+customImg.addEventListener("click", () => {
+    // 원하는 작업을 수행하는 코드를 여기에 추가하세요.
+    // 예시: 커서 이미지 변경
+    changeCursorImage("cursor4.png"); // 변경하고자 하는 이미지 주소로 수정해주세요.
+    setTimeout(() => changeCursorImage("cursor3.png"), 500);
+});
+function shuffleText() {
+            const topTextElement = document.getElementById('topText');
+            const text = topTextElement.textContent;
+
+            // 텍스트를 문자 배열로 변환
+            const characters = text.split('');
+
+            // 문자 배열을 섞음
+            for (let i = characters.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [characters[i], characters[j]] = [characters[j], characters[i]];
+            }
+
+            // 섞인 문자 배열을 다시 텍스트로 변환하여 엘리먼트에 적용
+            topTextElement.textContent = characters.join('');
+        }
+
+        // 일정한 간격(예: 1초마다)으로 shuffleText 함수 호출
+        setInterval(shuffleText, 100);
+    </script>
+</body>
+<div id="topText">$#%&!</div>
+</body>
+
+</html>
