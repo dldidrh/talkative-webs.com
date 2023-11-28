@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <title>Talkative Web</title>
+</head>
+<body>
+    <script src="app.js" defer></script>
+
+    <!--header-->
+    <header>
+        <div class="logo">Talkative Web</div>
+        <div class="menu">Generative System 2</div>
+        <div class="search">
+            <button div id="infoIcon">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="infoBox" style="color: #ffffff; font-family: 'Gothic A1', sans-serif; line-height: 27px;">
+                <h2 style="color: #ffffff;">Generative Design 2</h2>
+                <p style="color: #ffffff;">2023 제너러티브 디자인 2 수업에서는 '수다스럽고 복잡다단한'이라는 주제로 웹사이트 작업을 진행하였습니다.
+                <br>하단의 섬네일을 스크롤 하고, 'see more' 버튼을 눌러보며 학생들의 수다스럽고 복잡한 웹사이트를 살펴 보세요!</p>
+        </div>
+
+            <script>
+                // JavaScript 코드
+                document.getElementById('infoIcon').addEventListener('click', toggleInfoBox);
+                document.getElementById('closeIcon').addEventListener('click', toggleInfoBox);
+        
+                function toggleInfoBox() {
+                    var infoBox = document.getElementById('infoBox');
+                    if (infoBox.style.display === 'none' || infoBox.style.display === '') {
+                        infoBox.style.display = 'block';
+                    } else {
+                        infoBox.style.display = 'none';
+                    }
+                }
+            </script>
+        </div>
+    </header>
+
+    <!--slider-->
+    <div class="slider">
+        <!--list items-->
+        <div class="list">
+            <div class="item active">
+                <img src="images/seongseulgi.png">
+                <div class="content">
+                    <p>Talkative Web</p>
+                    <h2>Plastic City</h2>
+                    <p style="font-size: 21px;">성슬기</p>
+                    <p>나의 시선에서 바라본 바쁘게 돌아가는 <br>서울 속의 흔적들을 기록한 뒤 아카이빙한 웹사이트를 개발했습니다.
+                    <br>당신이 바라본 서울의 모습은 어떤 모습인가요? <br>도시를 탐험하며 도시의 소음에도 집중해 보세요.</p>
+                    <a href="https://seulseulseu.github.io/plastic-city-/"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/kweonchaehyun.png">
+                <div class="content">
+                    <p>Talkative Web</p>
+                    <h2>우리땅 말맛지도</h2>
+                    <p style="font-size: 21px;">권채현</p>
+                    <p>다양한 한국어 사투리를 경험할 수 있는 공간입니다. <br>각 지역의 특색있는 표현과 재미있는 대화를 살펴보세요!</p>
+                    <a href="./kweonchaehyun/index.html"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/LetMeTalk!.png">
+                <div class="content">
+                    <p>Talkative Web</p>
+                    <h2>Let Me Talk!</h2>
+                    <p style="font-size: 21px;">김용규</p>
+                    <p>5명의 AI와 대화를 나눠보세요! <br>무한하게 이어지는 대화의 파도 속에서도 정신을 유지할 수 있다면 말이죠..</p>
+                    <a href="https://damagethundercat.github.io/gen2_project/"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/kohyoonseo.png">
+                <div class="content" style="top:12%;">
+                    <p>Talkative Web</p>
+                    <h2 style="font-size: 67px;">언어의 세포 분열: 돌연변이 실험</h2>
+                    <p style="font-size: 21px;">고윤서</p>
+                    <p>언어의 전달 과정 중 발생하는 변형 현상을 체험해보는 실험입니다. <br>언어의 세포 분열을 직접 체험하면서,
+                        <br>돌연변이가 어떻게 발생하는지 알아보세요.
+                    </p>
+                    <a href="https://kohyoonseo.cafe24.com/"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/Hyemin Choi.png">
+                <div class="content" style="top: 13%;">
+                    <p>Talkative Web</p>
+                    <h2>Coffee and Cigarettes</h2>
+                    <p style="font-size: 21px;">최혜민</p>
+                    <p>짐 자무쉬의 영화 <커피와 담배>를 웹사이트로 번역한 공간입니다. <br>내용에 따라 바뀌는 영화 속 대화들의 모습을 확인해 보세요.</p>
+                    <a href="./choihyemin/index.html"><button type="button">See more</button></a>
+                </div>
+            </div>
+            
+            <div class="item">
+                <img src="images/kimminju.png">
+                <div class="content">
+                    <p>Talkative Web</p>
+                    <h2>Trash Talker</h2>
+                    <p style="font-size: 21px;">김민주, 김로영</p>
+                    <p>당신에게 헛소리를 늘어놓는 텔레비전. <br>정신을 똑바로 차리지 않으면 당신도 어느 순간 현혹되어 버릴 것입니다.</p>
+                    <a href="./kimminju/Trash Talker.html"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/RAFFEL SITE.png">
+                <div class="content">
+                    <p>Talkative Web</p>
+                    <h2>RAFFEL SITE</h2>
+                    <p style="font-size: 21px;">김성희, 한세흔</p>
+                    <p>지금 당신의 응모 결과를 확인하세요! 
+                        <br>RAFFEL SITE는 다양한 로그인 과정과 팝업창을 통해 <br>사용자의 응모 결과 확인을 방해하는 이벤트 사이트입니다.</p>
+                    <a href="./kimseounghee/index1.html"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/hyundaye.png">
+                <div class="content">
+                    <p>Talkative Web</p>
+                    <h2>BLINK</h2>
+                    <p style="font-size: 21px;">현다예</p>
+                    <p>BLINK! 자유롭게 클릭, 그리고 드래그, 그리고 쓰리 투 원, 찰칵!
+                    <br>하나뿐인 나만의 프레임을 만들어 사진을 찍어보자. <br>BLINK 2024 이벤트에도 참여해보세요!</p>
+                    <a href="./hyundaye/index.html"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/kimyeyoung.png">
+                <div class="content" style="top:14%;">
+                    <p>Talkative Web</p>
+                    <h2>Stop <br>Nagging me</h2>
+                    <p style="font-size: 21px;">김예영, 변민경 (킴코즈 keemkoz)</p>
+                    <p>잔소리에 지친 당신, 잔소리를 하는 너에게 킴코즈가 웹사이트를 드립니다.
+                        <br>아 어쩔건데..ㅋㅋ 니나 잘하란 말이야... 니 인생이나 잘 살아!!
+                    </p>
+                    <a href="./kimyeyoung/index.html"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="images/vdo.png">
+                <div class="content">
+                    <p>Talkative Web</p>
+                    <h2>안 봐도 VD오!</h2>
+                    <p style="font-size: 21px;">권나경, 박언진</p>
+                    <p>서울시립대학교 조형관 시각디자인과(VD)<br>학생들의 일상을 아카이빙한 웹사이트.
+                        <br>시각디자인과 학생들의 일상은 어떨까? <br>안 봐도 비디오인 시각디자인과 학생들의 일상을 살펴보자!
+                    </p>
+                    <a href="./kwonnagyung/index.html"><button type="button">See more</button></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        <!--button arrows-->
+        <div class="arrows">
+            <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+            <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+
+        <!--thumbnail-->
+        <div class="thumbnail">
+            <div class="thumbnail_item active">
+                <img src="images/seongseulgi.png">
+                <div class="thumbnail_content">
+                    Plastic City
+                </div>
+            </div>
+            
+                <div class="thumbnail_item">
+                    <img src="images/kweonchaehyun.png">
+                    <div class="thumbnail_content">
+                        우리땅 말맛지도
+                    </div>
+                </div>
+
+                <div class="thumbnail_item">
+                    <img src="images/LetMeTalk!.png">
+                    <div class="thumbnail_content">
+                        Let Me Talk!
+                    </div>
+                </div>
+
+                <div class="thumbnail_item">
+                    <img src="images/kohyoonseo.png">
+                    <div class="thumbnail_content">
+                        언어의 세포분열
+                    </div>
+                </div>
+
+                <div class="thumbnail_item">
+                    <img src="images/Hyemin Choi.png">
+                    <div class="thumbnail_content">
+                        Coffee and Cigarettes
+                    </div>
+                </div>
+                
+                <div class="thumbnail_item">
+                    <img src="images/kimminju.png">
+                    <div class="thumbnail_content">
+                        Trash Talker
+                    </div>
+                </div>
+
+                <div class="thumbnail_item">
+                    <img src="images/RAFFEL SITE.png">
+                    <div class="thumbnail_content">
+                        RAFFEL SITE
+                    </div>
+                </div>
+
+                <div class="thumbnail_item">
+                    <img src="images/hyundaye.png">
+                    <div class="thumbnail_content">
+                        BLINK
+                    </div>
+                </div>
+
+                <div class="thumbnail_item">
+                    <img src="images/kimyeyoung.png">
+                    <div class="thumbnail_content">
+                        Stop Nagging me
+                    </div>
+                </div>
+
+                <div class="thumbnail_item">
+                    <img src="images/vdo.png">
+                    <div class="thumbnail_content">
+                        안 봐도 VD오!
+                    </div>
+                </div>
+        </div>
+        
+    <script src="app.js"></script>
+</body>
+</html> 
