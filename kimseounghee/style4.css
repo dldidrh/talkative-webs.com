@@ -1,0 +1,80 @@
+.title {
+    text-align: center;
+    color: #FC4516; 
+    margin-top: 13vh;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 40px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    max-width: 30%;
+    font-style: italic;
+
+}
+
+body{
+   background-image: url('home2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+
+.boxouter {
+    position: relative;
+    width: 100%;
+    margin-top: 5vh;
+    margin-left: 8vh;
+    margin-right: 8vh;
+    margin-bottom: auto;
+}
+
+.boxinner {
+    position: relative;
+    left : 50%;
+    margin-left:-25%;
+    margin-right:-25%;
+    width: 700px;
+}
+
+.image-grid-container {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+
+.yellow-background {
+    background-color: #FFE402;
+    position:relative;
+    /* z-index: -1; */
+    border-radius: 40px;
+    margin:0 auto;
+    padding:60px;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin: 0 auto;
+}
+
+.image-grid img {
+    width: 150px;
+    height: 150px;
+    display: block;
+
+}
+
+
+.image-grid img.selected {
+    border-color: #FC4516;
+}
+
+
+ 

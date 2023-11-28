@@ -1,0 +1,103 @@
+   
+body { 
+   
+    background-image: url('motionhome.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    }
+    @media (max-width: 1366px) {
+         
+      }
+
+
+.caution { 
+    color: #FC4516;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-style: italic;
+    animation: slideInOut 15s linear infinite;
+    margin-top:225px;
+    
+}
+
+.caution p1 {
+    color: black;
+    border-spacing: 10px;
+    animation: slideInOut 15s linear infinite;
+    
+}
+
+@keyframes slideInOut {
+    0%, 100% {
+        transform: translateX(50%); /* 시작과 끝에서 오른쪽으로 이동 */
+    }
+    50% {
+        transform: translateX(0%); /* 중간에 다시 왼쪽으로 이동 */
+    }
+}
+
+.idlist {
+    color: #ffffff;
+    font-size:large;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 1%;
+    animation: slideUp 10s linear infinite;
+    opacity: 100;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.idlist2 {
+    color: #ffffff;
+    font-size:large;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 1%;
+    position: fixed;
+    right: 0;
+    animation: slideUp2 10s linear infinite;
+    opacity: 100;
+}
+
+@keyframes slideUp2 {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+
+
+
+button {
+ align-items: center;
+height: 110px; 
+width: 190px;
+margin-top:10px;
+margin-left:45%;
+background: rgb(255, 40 , 0);
+border: 7px solid rgb(245, 228, 0);
+border-radius: 55px;
+font-size: 50px;;
+font-weight: bold;
+font-family: Helvetica, sans-serif;
+color: #fff;
+}
+
+.motion {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+

@@ -1,0 +1,154 @@
+   
+body { 
+   background-image: url('home2.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    font-style:italic;
+    margin: 0;
+    display: inline-block;
+    color: #FC4516;
+    text-align: center;
+    margin-top: 10vh;
+    margin-left: 32%;
+}
+
+h2 {
+    color: #FFE402;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    font-style: italic;
+    margin-top: 5vh;
+    margin-left: 42%;
+}
+
+
+.capsule {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.BR {
+    position: absolute;
+    top:10%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: floatUp 2s infinite ease-in-out;
+}
+
+@keyframes floatUp {
+    0%, 100% { top: 70%; } /* 시작과 끝 위치 */
+    50% { top: 85%; } /* 중간 위치 */
+}
+
+.BR2 {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    animation: floatUp2 2.5s infinite ease-in-out;
+    z-index: 5;
+}
+
+@keyframes floatUp2 {
+    0%, 100% { top: 10%; } /* 시작과 끝 위치 */
+    50% { top: 50%; } /* 중간 위치 */
+}
+
+.Banner-1 { 
+    position: absolute;
+    right:0%;
+    bottom:0%;
+    display: none;
+}
+
+.Banner-2 { 
+    position: absolute;
+  top: 15%;
+  display: none;
+}
+
+.sale {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    z-index: 2;
+    opacity: 1;
+    transition: opcity 0.3 ease;
+    display: none;
+}
+
+.sale:hover {
+    opacity: 0;
+}
+
+.card {
+    position: absolute;
+    top: 53%;
+    left: 19%;
+    z-index: 3;
+    cursor: grab;
+    display: none;
+}
+
+.ticket {
+    position: absolute;
+    top: 45%;
+    right: 10%;
+    opacity: 1;
+    transition: opcity 0.3 ease;
+    z-index: 6;
+    display: none;
+}
+
+.ticket:hover {
+    opacity: 0;
+}
+
+
+.update{
+    position: absolute;
+    top: 25%;
+    right: 15%;
+    opacity: 1;
+    transition: opcity 0.3 ease;
+    z-index: 4; 
+    display: none;
+}
+
+.update1{
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    opacity: 1;
+    transition: opcity 0.3 ease;
+    z-index: 3; 
+    display: none;
+}
+.update2{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    opacity: 1;
+    transition: opcity 0.3 ease;
+    z-index: 2; 
+    display: none;
+}
+
+.danger{
+    position: absolute;
+    top: 25%;
+    right: 60%;
+    opacity: 1;
+    z-index:1; 
+    display: none;
+}
