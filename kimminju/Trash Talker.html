@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trash-talker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charter-webfont@4/charter.min.css" />
+    <link rel="stylesheet" href="NotoSerifKR/noto-serif-kr.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Open+Sans:wght@600&family=Roboto+Mono:wght@300&family=Tiro+Tamil&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: black;
+            overflow-x: hidden;
+            margin: 0; 
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #title {
+            margin-top: 55px;
+            font-size: 95px;
+            color: yellow;
+            font-family: "cheoeumcheoreom-210", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            line-height: 110px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #ani_1_container {
+            z-index: 1;
+            position: absolute;
+            margin-top: -1200px;
+        }
+
+        #ani_1 {
+            width: 250px;
+            height: 147px;
+            cursor: pointer;
+            display: block;
+            margin-left: 616px;
+            margin-top: 503px;
+        }
+
+        #ani_2,
+        #ani_3 {
+            width: 170px;
+            height: 127px;
+            cursor: pointer;
+            display: block;
+            position: absolute;
+        }
+
+        #ani_2 {
+            margin-left: 762px;
+            margin-top: -1007px;
+        }
+        #ani_4 {
+            margin-left: 989px;
+            margin-top: -1144px;
+            display: block;
+            position: absolute;
+            width: 125px;
+            height: 104px;
+            rotate: 8deg;
+        }
+        #ani_5 {
+            margin-left: 1039px;
+            margin-top: -800px;
+            display: block;
+            position: absolute;
+            width: 185px;
+            height: 134px;
+        }
+        #ani_6 {
+            margin-left: 959px;
+            margin-top: -424px;
+            display: block;
+            position: absolute;
+            width: 135px;
+            height: 114px;
+        }
+        #ani_7 {
+            margin-left: 975px;
+            margin-top: -1248px;
+            display: block;
+            position: absolute;
+            width: 88px;
+            height: 77px;
+            rotate: 8deg;
+        }
+        #ani_8 {
+            margin-left: 1025px;
+            margin-top: 3px;
+            display: block;
+            position: absolute;
+            width: 142px;
+            height: 129px;
+        }
+        #ani_9 {
+            margin-left: 550px;
+            margin-top: 340px;
+            display: block;
+            position: absolute;
+            width:162px;
+            height: 109px;
+        }
+        #ani_10 {
+            margin-left: 644px;
+            margin-top: -75px;
+            display: block;
+            position: absolute;
+            width:242px;
+            height: 169px;
+        }
+        #ani_11 {
+            margin-left: 678px;
+            margin-top: -480px;
+            display: block;
+            position: absolute;
+            width:182px;
+            height: 139px;
+        }
+        #ani_12 {
+            margin-left: 278px;
+            margin-top: 300px;
+            display: block;
+            position: absolute;
+            width:212px;
+            height: 199px;
+        }
+        #ani_13 {
+            margin-left: 896px;
+            margin-top: -640px;
+            display: block;
+            position: absolute;
+            width:188px;
+            height: 185px;
+        }
+        #ani_14 {
+            margin-left: 876px;
+            margin-top: -816px;
+            display: block;
+            position: absolute;
+            width:138px;
+            height: 102px;
+        }
+        #ani_15 {
+            margin-left: 1045px;
+            margin-top: -986px;
+            display: block;
+            position: absolute;
+            width:140px;
+            height: 102px;
+        }
+        #ani_16 {
+            margin-left: 1258px;
+            margin-top: 345px;
+            display: block;
+            position: absolute;
+            width:280px;
+            height: 276px;
+        }
+        #ani_17 {
+            margin-left: 777px;
+            margin-top: 189px;
+            display: block;
+            position: absolute;
+            width:329px;
+            height: 243px;
+        }
+        #ani_18 {
+            margin-left: 537px;
+            margin-top: 546px;
+            display: block;
+            position: absolute;
+            width:429px;
+            height: 313px;
+        }
+        #ani_19 {
+            margin-left: 1182px;
+            margin-top: 686px;
+            display: block;
+            position: absolute;
+            width:186px;
+            height: 158px;
+        }
+        #ani_20 {
+            margin-left: 810px;
+            margin-top: -267px;
+            display: block;
+            position: absolute;
+            width:172px;
+            height: 135px;
+        }
+        #ani_21 {
+            margin-left: 130px;
+            margin-top: 620px;
+            display: block;
+            position: absolute;
+            width:282px;
+            height: 215px;
+            rotate: 5deg;
+        }
+        #Tel {
+            width: 1500px;
+            margin-top: -1260px;
+            margin-left: 120px;
+            z-index: 0;
+            position: absolute;
+            padding-bottom: 30px;
+            justify-content: center;
+
+        }
+
+        #para1 {
+            font-size: 20px;
+            font-family: "Galmuri11";
+            color: yellow;
+            line-height: 40px;
+            margin-left: 70px;
+            margin-top: 30px;
+            white-space: nowrap;
+        }
+        #para2 {
+            font-size: 14px;
+            font-family: "Galmuri11";
+            color: rgb(255, 0, 0);
+            line-height: 30px;
+            margin-left: 70px;
+            margin-top: 30px;
+            white-space: nowrap;
+            text-align: left;
+            display: block;
+            position: absolute;
+            margin-left: 1100px;
+            margin-top: -903px;
+            white-space: pre-line;
+            overflow: hidden;
+        }
+        #para3 {
+            font-size: 20px;
+            font-family: "Galmuri11";
+            color: yellow;
+            line-height: 40px;
+            margin-left: 70px;
+            margin-top: 70px;
+            white-space: pre-line;
+            text-align: left;
+            display: block;
+            position: absolute;
+            overflow: hidden;
+        }
+        #click {
+            text-align: center;
+            font-family: "Galmuri11";
+            color: magenta;
+            font-weight: 600;
+            font-size: 24px;
+            position: absolute;
+            display: block;
+            margin-left: 680px;
+            margin-top: -800px;
+        }
+    </style>
+
+    <script>
+        (function (d) {
+            var config = {
+                    kitId: 'hgo8dnz',
+                    scriptTimeout: 3000,
+                    async: true
+                },
+                h = d.documentElement,
+                t = setTimeout(function () {
+                    h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+                }, config.scriptTimeout),
+                tk = d.createElement("script"),
+                f = false,
+                s = d.getElementsByTagName("script")[0],
+                a;
+            h.className += " wf-loading";
+            tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+            tk.async = true;
+            tk.onload = tk.onreadystatechange = function () {
+                a = this.readyState;
+                if (f || (a && a != "complete" && a != "loaded")) return;
+                f = true;
+                clearTimeout(t);
+                try {
+                    Typekit.load(config);
+                } catch (e) { }
+            };
+            s.parentNode.insertBefore(tk, s)
+        })(document);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var para2 = document.getElementById('para2');
+            var text = para2.innerText;
+            para2.innerHTML = '';
+
+            function typeEffect() {
+                var i = 0;
+                var interval = setInterval(function () {
+                    para2.innerHTML += text.charAt(i);
+                    i++;
+                    if (i > text.length) {
+                        clearInterval(interval);
+                    }
+                }, 10);
+            }
+
+            typeEffect();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var clickText = document.getElementById('click');
+
+            function toggleVisibility() {
+                clickText.style.visibility = (clickText.style.visibility === 'hidden') ? 'visible' : 'hidden';
+            }
+
+            setInterval(toggleVisibility, 200);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        typeEffectPara3();
+    });
+
+    function typeEffectPara3() {
+        var para3 = document.getElementById('para3');
+        var text = para3.innerText;
+        para3.innerHTML = '';
+
+        var i = 0;
+        var interval = setInterval(function () {
+            para3.innerHTML += text.charAt(i);
+            i++;
+            if (i > text.length) {
+                clearInterval(interval);
+            }
+        }, 30);
+    }
+    
+    </script>
+</head>
+
+<body>
+    <p id="title">
+        Trash-Talker는 대화 가능 채널을<br>당신에게 제공합니다. 이 채널에서는 다양<br>한 영상들을 새로운 방식으로
+        접하는<br>것이 가능해집니다.
+    </p>
+    <p id="para1">
+        Trash Talker는 역동적이고 논란의 여지가 있는 성격의 텔레비전들을 모아놓은 웹사이트입니다.<br>
+        그들은 쓰레기를 내뱉는 것처럼 보이지만 사회적 규범을 거스르고, 논란적이며 논쟁적인 성격의<br>
+        텔레비전들은 당신에게 새로운 감정적 경험을 선사할 것입니다. 이곳은 일상을 벗어난, 당신이 아직 겪어본 적<br>
+        없는 현실을 경험할 수 있는 곳입니다. 일상 언어에서의 쓰레기들을 모아 놓은 이곳은 인간 세계의<br>
+        파괴적인 충돌, 정신적인 굴곡, 그리고 최악의 순간들을 간접적으로 경험해 볼 수 있게 해줍니다.<br>
+        우리는 정상적인 콘텐츠에서 벗어나 진정한 현실의 모습을 보여줍니다.<br>
+        당신이 경험하게 될 쓰레기 연설들은 인간 세계 어딘가에서 들려올 수 있는 말들입니다. 수다스러운 쓰레기의<br>
+        향연을 느껴보세요! 여기서 당신은 감정적인 폭발과 기괴한 상황을 체험할 수 있습니다.<br>
+        Trash Talker는 이례적인 콘텐츠로, 여러분의 호기심과 미묘한 욕망을 충족 시켜줄 수 있습니다.<br>
+        이곳에서는 어둠 속에서의 진실한 모습을 발견할 수 있습니다. 수다스러운 수다스러운
+        수다스러운 수다스러운 수다스러운 수다스러운<br>
+        수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운<br>
+        수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운 수다스러운
+        쓰레기의 향연을<br>느껴보세요! 당신을 위한 신선한 홈페이지로 오신 것을 환영합니다. 수다스러운 쓰레기의<br>향연을 느껴보세요! 우리는 당신이 보지 못하고 있는 일상적인 대화들을 모았습니다. 우리 사이트는 참여형 웹사이트로,<br>
+        당신이 직접 쓰레기들을 내뱉은 텔레비전과 대화해 볼 수 있는 형식입니다.<br>
+        이는 극적인 시청 경험을 선사합니다. 수다스러운 쓰레기의 향연을 느껴보세요! Trash Talker는<br>
+        다양성과 열정을 지지하며, 다양한 의견을 존중합니다. 여러분은 이곳에서 쓰레기 발언들이 마치<br>
+        예술처럼 펼쳐지는 것을 경험할 수 있습니다. 수다스러운 쓰레기의 향연을 느껴보세요!
+    </p>
+
+
+    <!-- 클릭 시 다른 페이지로 이동 -->
+    <div id="ani_1_container">
+        <a href>
+            <img id="ani_1" src="김민주_이미지/노이즈.gif" alt="ani">
+        </a>
+    </div>
+    <p id="click">Click Me!!!<br>▾</p>
+    <p id="para2">Trash Talker는 시정되지 않은 현실과 사회적으로 수용되지 않는 모습들을 다루고<br>있습니다. 이곳에서는 인간들 간의 사악한 갈등, 극단적인 상황, 그리고 정신적으로<br>충격적인 경험이 당신을 기다리고 있습니다. 수다스러운 쓰레기의 향연을 <br>껴보세요! 이는 어둠 속에서 영감을 받은, 마음의 어둠을 드러내는<br>콘텐츠들입니다. 우리는 다양성과 열정을 지지하며, 그렇기 때문에 우리의 웹은<br>다채로운 의견들을 모두 담았습니다. 이곳에서는 현실의 다양한 면을 담은 콘텐츠들이<br>여러분을 기다리고 있습니다. 여러분은 이곳에서 직접 다양한 성격의<br>텔레비전들과 소통하며 여러분이 평소 보지 못했던 이 세계의 그림자의<br>지극히 일상적인 면들을 경험할 수 있습니다.<br>우리는 당신이 쓰레기 발언들을 포함한 다채로운 의견들을 경험해봄으로써 새로운<br>시각을 발견하길 원합니다. 수다스러운 쓰레기의 향연을 느껴보세요! 수다스러운<br>쓰레기의 향연을 느껴보세요! 수다스러운 쓰레기의 향연을 느껴보세요!<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기<br>수다스러운 쓰레기 수다스러운 쓰레기 수다스러운 쓰레기</p>
+    <p id="para3">당신이 경험하게 될 쓰레기 연설들은 인간 세계 어딘가에서 들려올 수 있는 말들입니다. 수다스러운 쓰레기의 향연을 느껴보세요! 여기서 당신은 감정적인 폭발과 기괴한<br>상황을 체험할 수 있습니다. Trash Talker는 이례적인 콘텐츠로, 여러분의 호기심과 미묘한 욕망을 충족 시켜줄 수 있습니다. 이곳에서는 어둠 속에서의 진실한 모습을<br> 발견할 수 있습니다. 수다스러운 쓰레기의 향연을 느껴보세요! 당신을 위한 신선한 홈페이지로 오신 것을 환영합니다. 수다스러운 쓰레기의 향연을 느껴보세요! 우리는<br> 당신이 보지 못하고 있는 일상적인 대화들을 모았습니다. 우리 사이트는 참여형 웹사이트로, 당신이 직접 쓰레기들을 내뱉은 텔레비전과 대화해 볼 수 있는 형식입니다.<br> 이는 극적인 시청 경험을 선사합니다. 수다스러운 쓰레기의 향연을 느껴보세요! Trash Talker는 다양성과 열정을 지지하며, 다양한 의견을 존중합니다.<br> 여러분은 이곳에서 쓰레기 발언들이 마치 예술처럼 펼쳐지는 것을 경험할 수 있습니다. 수다스러운 쓰레기의 향연을 느껴보세요! 당신이 경험하게 될 쓰레기 연설들은<br> 인간 세계 어딘가에서 들려올 수 있는 말들입니다. 수다스러운 쓰레기의 향연을 느껴보세요! 여기서 당신은 감정적인 폭발과 기괴한 상황을<br> 체험할 수 있습니다. Trash Talker는 이례적인 콘텐츠로, 여러분의 호기심과 미묘한 욕망을 충족 시켜줄 수 있습니다. 이곳에서는 어둠 속에서의 진실한 모습을<br> 발견할 수 있습니다. 수다스러운 쓰레기의 향연을 느껴보세요! 당신을 위한 신선한 홈페이지로 오신 것을 환영합니다. 수다스러운 쓰레기의 향연을 느껴보세요! 우리는<br> 당신이 보지 못하고 있는 일상적인 대화들을 모았습니다. 우리 사이트는 참여형 웹사이트로, 당신이 직접 쓰레기들을 내뱉은 텔레비전과 대화해 볼 수 있는 형식입니다.<br> 이는 극적인 시청 경험을 선사합니다. 수다스러운 쓰레기의 향연을 느껴보세요! Trash Talker는 다양성과 열정을 지지하며, 다양한 의견을 존중합니다.<br> 여러분은 이곳에서 쓰레기 발언들이 마치 예술처럼 펼쳐지는 것을 경험할 수 있습니다. 수다스러운 쓰레기의 향연을 느껴보세요!</p>
+
+    <img id="ani_2" src="김민주_이미지/KakaoTalk_Image_2023-11-21-07-05-21.gif" alt="Television">
+    <img id="ani_4" src="김민주_이미지/30c3fe6bf9c9830542dde88175ab8712.gif">
+    <img id="ani_5" src="김민주_이미지/4c72180adee695e0ce30855df5bc12f5.gif">
+    <img id="ani_6" src="김민주_이미지/a443ae90a963a657e12737c466ddff95.gif">
+    <img id="ani_7" src="김민주_이미지/9a48f357812b93e73b11e8b6bebd93c2.gif">
+    <img id="ani_8" src="김민주_이미지/d0cd5bcf5e00f91aa1ad4df3a54a50ea.gif">
+    <img id="ani_9" src="김민주_이미지/8c1cd4972d6a6f65785f2af36eee0c7d.gif">
+    <img id="ani_10" src="김민주_이미지/4bf29e8d1b80dc0336d42014d5995092.gif">
+    <img id="ani_11" src="김민주_이미지/22acdae6882c69cfd991b09f5a9a6b72.gif">
+    <img id="ani_11" src="김민주_이미지/22acdae6882c69cfd991b09f5a9a6b72.gif">
+    <img id="ani_12" src="김민주_이미지/9120cbcbb9b8f14f5c5448fe3929469a.gif">
+    <img id="ani_13" src="김민주_이미지/3908f2ef5bafd3ccd1e4d5ca92d8df8e-1.gif">
+    <img id="ani_14" src="김민주_이미지/bc1932c2c01f6fb4c7272ed229b97c95.gif">
+    <img id="ani_15" src="김민주_이미지/2b58bbd41955378f0f2a4eb30ea8bf18.gif">
+    <img id="ani_16" src="김민주_이미지/b0e64adaf14e724e558d7a7e5e0ba783.gif">
+    <img id="ani_17" src="김민주_이미지/5e8d7eb7d5fc3e1610a6367ea4028cde.gif">
+    <img id="ani_18" src="김민주_이미지/199a075320e11717917e29ba693f7fc3.gif">
+    <img id="ani_19" src="김민주_이미지/e105ccb3e3acddcbe06250a89f3d7d14.gif">
+    <img id="ani_20" src="김민주_이미지/c00b7796b6fa6095e6ff86e40983a3b7.gif">
+    <img id="ani_21" src="김민주_이미지/fcb1a372c2f473c3fd4712053dd24975.gif">
+   
+
+    <img id="Tel" src="김민주_이미지/텔레비.png" alt="Television">
+
+</body>
+
+</html>
